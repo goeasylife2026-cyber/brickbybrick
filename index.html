@@ -1,1290 +1,617 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-  <title>Brick by Brick AI | Digital Solutions</title>
-
-  <meta name="description"
-        content="Brick by Brick AI - Smart digital solutions, NFC and QR business cards, Google review cards, smart bands and smart keychains.">
-
-  <style>
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f5f5f5;
-      color: #111;
-      line-height: 1.6;
-    }
-
-    /* =========================
-       NAVIGATION
-    ========================= */
-
-    header {
-      background: #050505;
-      color: white;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 15px rgba(0,0,0,0.3);
-    }
-
-    .navbar {
-      max-width: 1200px;
-      margin: auto;
-      min-height: 75px;
-      padding: 12px 20px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .logo {
-      text-decoration: none;
-      color: white;
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      white-space: nowrap;
-    }
-
-    .logo span {
-      color: #ff9d00;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      padding: 10px 12px;
-      border-radius: 8px;
-      font-size: 14px;
-      transition: 0.3s;
-    }
-
-    .nav-links a:hover {
-      background: #ff9d00;
-      color: #000;
-    }
-
-    .whatsapp-nav {
-      background: #ff9d00 !important;
-      color: #000 !important;
-      font-weight: bold;
-    }
-
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-      min-height: 650px;
-      background:
-        linear-gradient(
-          rgba(0,0,0,0.72),
-          rgba(0,0,0,0.82)
-        ),
-        radial-gradient(
-          circle at center,
-          #333 0%,
-          #111 45%,
-          #000 100%
-        );
-
-      color: white;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      text-align: center;
-      padding: 70px 20px;
-    }
-
-    .hero-content {
-      max-width: 900px;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      border: 1px solid #ff9d00;
-      color: #ff9d00;
-      padding: 8px 18px;
-      border-radius: 30px;
-      font-size: 14px;
-      font-weight: bold;
-      margin-bottom: 25px;
-      letter-spacing: 1px;
-    }
-
-    .hero h1 {
-      font-size: clamp(45px, 8vw, 85px);
-      line-height: 1;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: -2px;
-      margin-bottom: 25px;
-    }
-
-    .hero h1 span {
-      color: #ff9d00;
-    }
-
-    .hero h2 {
-      font-size: clamp(22px, 4vw, 38px);
-      margin-bottom: 20px;
-      font-weight: 600;
-    }
-
-    .hero p {
-      max-width: 700px;
-      margin: 0 auto 35px;
-      color: #ddd;
-      font-size: 18px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-block;
-      text-decoration: none;
-      padding: 15px 28px;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .btn-primary {
-      background: #ff9d00;
-      color: #000;
-    }
-
-    .btn-primary:hover {
-      background: #ffb52e;
-      transform: translateY(-2px);
-    }
-
-    .btn-outline {
-      border: 1px solid white;
-      color: white;
-    }
-
-    .btn-outline:hover {
-      background: white;
-      color: #000;
-    }
-
-    /* =========================
-       SECTION
-    ========================= */
-
-    section {
-      padding: 80px 20px;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 45px;
-    }
-
-    .section-title .small-title {
-      color: #ff8c00;
-      font-size: 14px;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-    }
-
-    .section-title h2 {
-      font-size: clamp(30px, 5vw, 45px);
-      margin-bottom: 12px;
-    }
-
-    .section-title p {
-      max-width: 700px;
-      margin: auto;
-      color: #666;
-    }
-
-    /* =========================
-       ABOUT
-    ========================= */
-
-    .about {
-      background: white;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 35px;
-      align-items: center;
-    }
-
-    .about-text h3 {
-      font-size: 30px;
-      margin-bottom: 18px;
-    }
-
-    .about-text h3 span {
-      color: #ff8c00;
-    }
-
-    .about-text p {
-      color: #555;
-      margin-bottom: 15px;
-    }
-
-    .about-box {
-      background: #080808;
-      color: white;
-      padding: 40px;
-      border-radius: 20px;
-      border-left: 5px solid #ff9d00;
-    }
-
-    .about-box h3 {
-      color: #ff9d00;
-      margin-bottom: 15px;
-      font-size: 25px;
-    }
-
-    .about-box p {
-      color: #ddd;
-    }
-
-    /* =========================
-       SERVICES
-    ========================= */
-
-    .services {
-      background: #f5f5f5;
-    }
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .service-card {
-      background: white;
-      padding: 30px 22px;
-      border-radius: 16px;
-      border: 1px solid #e5e5e5;
-      transition: 0.3s;
-      text-align: center;
-    }
-
-    .service-card:hover {
-      transform: translateY(-7px);
-      border-color: #ff9d00;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-    }
-
-    .service-icon {
-      font-size: 45px;
-      margin-bottom: 15px;
-    }
-
-    .service-card h3 {
-      font-size: 19px;
-      margin-bottom: 10px;
-    }
-
-    .service-card p {
-      color: #666;
-      font-size: 14px;
-    }
-
-    /* =========================
-       DIGITAL CARD
-    ========================= */
-
-    .digital-card {
-      background: #080808;
-      color: white;
-    }
-
-    .digital-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .digital-content h2 {
-      font-size: clamp(32px, 5vw, 50px);
-      margin-bottom: 20px;
-    }
-
-    .digital-content h2 span {
-      color: #ff9d00;
-    }
-
-    .digital-content p {
-      color: #ccc;
-      margin-bottom: 20px;
-    }
-
-    .features {
-      list-style: none;
-      margin-bottom: 30px;
-    }
-
-    .features li {
-      margin-bottom: 12px;
-      color: #ddd;
-    }
-
-    .features li::before {
-      content: "✓";
-      color: #ff9d00;
-      font-weight: bold;
-      margin-right: 10px;
-    }
-
-    .card-preview {
-      min-height: 380px;
-      background:
-        linear-gradient(145deg, #171717, #050505);
-      border: 1px solid #333;
-      border-radius: 25px;
-      padding: 35px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .preview-inner {
-      width: 100%;
-      max-width: 320px;
-      background: white;
-      color: #111;
-      border-radius: 18px;
-      padding: 30px;
-      text-align: center;
-      box-shadow: 0 20px 50px rgba(255,157,0,0.15);
-    }
-
-    .preview-logo {
-      color: #ff9d00;
-      font-weight: 900;
-      font-size: 22px;
-      margin-bottom: 20px;
-    }
-
-    .preview-circle {
-      width: 90px;
-      height: 90px;
-      background: #111;
-      color: white;
-      border-radius: 50%;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 30px;
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
-
-    .preview-inner h3 {
-      margin-bottom: 8px;
-    }
-
-    .preview-inner p {
-      color: #666;
-      font-size: 14px;
-    }
-
-    /* =========================
-       WHY US
-    ========================= */
-
-    .why-us {
-      background: white;
-    }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .why-card {
-      padding: 30px;
-      border-radius: 15px;
-      background: #fafafa;
-      border: 1px solid #eee;
-    }
-
-    .why-card h3 {
-      margin-bottom: 10px;
-    }
-
-    .why-card p {
-      color: #666;
-      font-size: 15px;
-    }
-
-    /* =========================
-       CONTACT
-    ========================= */
-
-    .contact {
-      background: #ff9d00;
-      color: #000;
-    }
-
-    .contact-box {
-      max-width: 800px;
-      margin: auto;
-      text-align: center;
-    }
-
-    .contact-box h2 {
-      font-size: clamp(32px, 5vw, 50px);
-      margin-bottom: 15px;
-    }
-
-    .contact-box p {
-      margin-bottom: 30px;
-    }
-
-    .contact-buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .contact-btn {
-      background: #000;
-      color: white;
-      text-decoration: none;
-      padding: 14px 22px;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .contact-btn:hover {
-      background: #222;
-      transform: translateY(-2px);
-    }
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer {
-      background: #050505;
-      color: white;
-      padding: 45px 20px 25px;
-    }
-
-    .footer-grid {
-      max-width: 1100px;
-      margin: auto;
-
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 40px;
-    }
-
-    footer h3 {
-      margin-bottom: 15px;
-    }
-
-    footer h3 span {
-      color: #ff9d00;
-    }
-
-    footer p {
-      color: #aaa;
-      font-size: 14px;
-    }
-
-    footer ul {
-      list-style: none;
-    }
-
-    footer li {
-      margin-bottom: 8px;
-    }
-
-    footer a {
-      color: #bbb;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      color: #ff9d00;
-    }
-
-    .copyright {
-      max-width: 1100px;
-      margin: 35px auto 0;
-      padding-top: 20px;
-      border-top: 1px solid #222;
-      text-align: center;
-      color: #777;
-      font-size: 13px;
-    }
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 900px) {
-
-      .nav-links {
-        display: none;
-      }
-
-      .navbar {
-        justify-content: center;
-      }
-
-      .about-grid,
-      .digital-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .service-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .why-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-    }
-
-    @media (max-width: 600px) {
-
-      section {
-        padding: 60px 18px;
-      }
-
-      .hero {
-        min-height: 620px;
-      }
-
-      .hero h1 {
-        letter-spacing: -1px;
-      }
-
-      .hero-buttons {
-        flex-direction: column;
-      }
-
-      .hero-buttons .btn {
-        width: 100%;
-      }
-
-      .service-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .about-box {
-        padding: 25px;
-      }
-
-      .card-preview {
-        padding: 20px;
-      }
-
-      .contact-buttons {
-        flex-direction: column;
-      }
-
-      .contact-btn {
-        width: 100%;
-      }
-    }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brick By Brick AI — Smart Digital Cards</title>
+<meta name="description" content="NFC smart business cards, Google review cards, smart bands and keychains. Build your business, brick by brick.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root{
+    --bg:#060a10;
+    --panel:#0c131e;
+    --panel-2:#0e1826;
+    --border: rgba(45,227,190,0.16);
+    --border-strong: rgba(45,227,190,0.35);
+    --teal:#22e3a6;
+    --cyan:#17c3f2;
+    --purple:#8b6bff;
+    --text:#f3f6f8;
+    --muted:#93a3b3;
+    --muted-2:#6d7c8c;
+    --grad: linear-gradient(90deg,#22e3a6,#17c3f2);
+    --radius: 10px;
+    --max: 1200px;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{ font-family:'Poppins',sans-serif; margin:0; }
+  p{ margin:0; }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; margin:0; padding:0; }
+  .wrap{ max-width: var(--max); margin:0 auto; padding: 0 1.75rem; }
+  .eyebrow{
+    display:block; font-size:0.78rem; font-weight:700; letter-spacing:0.14em;
+    text-transform:uppercase; color: var(--teal); margin-bottom:0.6rem;
+  }
+  .grad-text{
+    background: var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  section{ padding: 5rem 0; }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
+    outline: 2px solid var(--teal); outline-offset:2px;
+  }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; gap:0.6em;
+    font-family:'Inter',sans-serif; font-weight:700; font-size:0.92rem;
+    padding: 0.85em 1.5em; border-radius: 8px; cursor:pointer; border:1.5px solid transparent;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    white-space:nowrap;
+  }
+  .btn-solid{ background: var(--grad); color:#04120d; }
+  .btn-solid:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px -8px rgba(34,227,166,0.45); }
+  .btn-outline{ background: rgba(34,227,166,0.06); border-color: var(--border-strong); color: var(--text); }
+  .btn-outline:hover{ background: rgba(34,227,166,0.14); border-color: var(--teal); }
+  .btn-block{ width:100%; justify-content:center; }
+  .btn:active{ transform: translateY(0); }
+
+  /* ================= HEADER ================= */
+  header{
+    position: sticky; top:0; z-index:100;
+    background: rgba(6,10,16,0.85); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding: 1.1rem 0; }
+  .brand{ display:flex; align-items:center; gap:0.7em; font-family:'Poppins',sans-serif; font-weight:800; font-size:1.08rem; }
+  .brand-mark{ width:30px; height:30px; color: var(--teal); flex-shrink:0; }
+  .nav__links{ display:flex; gap:2.1rem; }
+  .nav__links a{ font-size:0.92rem; font-weight:500; color:#d7e0e8; padding-bottom:6px; border-bottom:2px solid transparent; transition: color .15s ease, border-color .15s ease; }
+  .nav__links a:hover, .nav__links a.active{ color: var(--teal); border-color: var(--teal); }
+  .nav__toggle{ display:none; background:none; border:none; color:var(--text); font-size:1.4rem; cursor:pointer; }
+
+  @media (max-width: 900px){
+    .nav__links{ display:none; }
+    .nav__toggle{ display:block; }
+  }
+
+  /* ================= HERO ================= */
+  .hero{ position:relative; overflow:hidden; padding: 5rem 0 4rem; }
+  .hero-lines{ position:absolute; top:0; right:0; width:60%; height:100%; opacity:0.55; pointer-events:none; }
+  .hero__grid{ position:relative; z-index:2; display:grid; grid-template-columns: 1fr 0.95fr; gap:2.5rem; align-items:center; }
+  .hero h1{ font-size: clamp(2rem,4.4vw,3.1rem); line-height:1.08; font-weight:900; text-transform:uppercase; }
+  .hero h1 span{ display:block; font-style:italic; }
+  .hero p.lead{ margin:1.3rem 0 1.8rem; color: var(--muted); font-size:1.05rem; max-width:36ch; }
+  .hero__ctas{ display:flex; gap:1rem; flex-wrap:wrap; }
+
+  .hero__visual{ position:relative; min-height:360px; display:flex; align-items:center; justify-content:center; }
+  .pedestal{
+    position:absolute; bottom:18px; width:78%; height:34px; left:50%; transform:translateX(-50%);
+    border-radius:50%; background: radial-gradient(ellipse at center, rgba(23,195,242,0.55), rgba(23,195,242,0) 70%);
+    box-shadow: 0 0 60px 10px rgba(23,195,242,0.35);
+  }
+  .pedestal::after{
+    content:""; position:absolute; inset:0; border-radius:50%; border:2px solid rgba(23,195,242,0.6);
+    box-shadow: inset 0 0 20px rgba(23,195,242,0.5);
+  }
+  .card-stack{ position:relative; width:100%; max-width:340px; height:320px; }
+  .card{
+    position:absolute; border-radius:14px; border:1px solid rgba(34,227,166,0.35);
+    background: linear-gradient(160deg,#10161f,#070b11);
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6), 0 0 30px -6px rgba(34,227,166,0.25);
+  }
+  .card--id{
+    width:190px; height:290px; left:6%; bottom:26px; z-index:2;
+    padding: 1.3rem 1.1rem; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; text-align:center;
+    transform: rotate(-4deg);
+  }
+  .card--id .mark{ width:44px; height:44px; color:var(--teal); margin-bottom:auto; margin-top:1.6rem; }
+  .card--id .name{ font-family:'Poppins',sans-serif; font-weight:800; font-size:0.82rem; letter-spacing:0.02em; }
+  .card--id .sub{ font-size:0.58rem; letter-spacing:0.14em; color:var(--teal); margin-top:0.3rem; text-transform:uppercase; }
+  .card--id .nfc{ margin-top:0.9rem; width:20px; height:20px; color: rgba(255,255,255,0.5); }
+
+  .card--scan{
+    width:150px; height:230px; right:2%; bottom:56px; z-index:1;
+    padding: 0.9rem; transform: rotate(5deg);
+    display:flex; flex-direction:column; align-items:center;
+  }
+  .card--scan .tap{ font-size:0.6rem; color:var(--muted); text-align:center; margin-bottom:0.7rem; }
+  .card--scan .tap i{ display:block; font-size:0.85rem; color:var(--teal); margin-bottom:0.2rem; }
+  .qr{ width:88px; height:88px; background:#fff; border-radius:6px; display:grid; grid-template-columns: repeat(7,1fr); gap:2px; padding:6px; }
+  .qr span{ background:#0a0a0a; border-radius:1px; }
+  .qr span.off{ background:transparent; }
+  .card--scan .icons{ display:flex; gap:0.8em; margin-top:auto; padding-top:0.8rem; color:var(--muted); font-size:0.85rem; }
+
+  @media (max-width: 900px){
+    .hero__grid{ grid-template-columns:1fr; }
+    .hero__visual{ order:-1; min-height:300px; }
+  }
+
+  /* ================= TRUST-ish small ================= */
+  .services__head{ max-width:40rem; margin-bottom:2.6rem; }
+  .services__head h2{ font-size: clamp(1.6rem,3vw,2rem); font-weight:800; position:relative; display:inline-block; padding-bottom:0.6rem; }
+  .services__head h2::after{ content:""; position:absolute; left:0; bottom:0; width:46px; height:3px; background:var(--grad); border-radius:3px; }
+
+  .services__grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1.4rem; }
+  .service-card{
+    background: var(--panel); border:1px solid var(--border); border-radius: var(--radius);
+    padding: 1.7rem 1.5rem; transition: transform .18s ease, border-color .18s ease;
+  }
+  .service-card:hover{ transform: translateY(-4px); border-color: var(--border-strong); }
+  .service-icon{
+    width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    background: rgba(34,227,166,0.08); border:1px solid var(--border); color: var(--teal); font-size:1.3rem;
+    margin-bottom:1.2rem; position:relative;
+  }
+  .service-icon i.fa-star{ color:var(--purple); }
+  .service-icon::after{
+    content:"\f1eb"; font-family:"Font Awesome 6 Free"; font-weight:900; position:absolute; right:-10px; top:8px;
+    font-size:0.7rem; color: var(--muted-2); opacity:0.7;
+  }
+  .service-card h3{ font-size:1.08rem; font-weight:700; margin-bottom:0.2rem; }
+  .service-tag{ display:block; font-size:0.68rem; font-weight:700; letter-spacing:0.08em; color:var(--teal); margin-bottom:0.7rem; }
+  .service-card p{ font-size:0.88rem; color:var(--muted); margin-bottom:1.3rem; min-height:2.6em; }
+  .service-card .btn{ padding:0.55em 1em; font-size:0.8rem; }
+
+  @media (max-width: 980px){ .services__grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width: 560px){ .services__grid{ grid-template-columns:1fr; } }
+
+  /* ================= MISSION ================= */
+  .mission{ padding-top:1rem; }
+  .mission__panel{
+    display:grid; grid-template-columns: 1fr 1.2fr; align-items:stretch;
+    background: var(--panel); border:1px solid var(--border); border-radius: var(--radius);
+    overflow:hidden; position:relative;
+  }
+  .mission__panel::before{ content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--grad); }
+  .mission__copy{ padding: 2.4rem 2.4rem; }
+  .mission__copy h2{ font-size:1.8rem; font-weight:800; margin:0.3rem 0 0.9rem; }
+  .mission__copy p{ color:var(--muted); max-width:30ch; margin-bottom:1.4rem; }
+  .mission__media{ position:relative; min-height:220px; }
+  .mission__media svg{ width:100%; height:100%; display:block; }
+
+  @media (max-width: 800px){ .mission__panel{ grid-template-columns:1fr; } .mission__media{ min-height:180px; order:-1; } }
+
+  /* ================= DIGITAL CARDS ================= */
+  .digital{ padding-top:1rem; }
+  .digital__panel{
+    background: var(--panel); border:1px solid var(--border); border-radius: var(--radius);
+    padding: 2.4rem; display:grid; grid-template-columns: 1fr auto auto; gap:2rem; align-items:center;
+  }
+  .digital__copy h2{ font-size:1.5rem; font-weight:800; margin:0.3rem 0 0.8rem; }
+  .digital__copy p{ color:var(--muted); max-width:34ch; }
+  .digital__stack{ display:flex; }
+  .mini-card{
+    width:78px; height:120px; border-radius:8px; margin-left:-24px; border:1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 15px 30px -10px rgba(0,0,0,0.6); display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
+    padding:0.5rem 0.4rem; font-size:0.4rem; text-align:center; position:relative;
+  }
+  .mini-card:first-child{ margin-left:0; }
+  .mini-card .mark{ width:16px; height:16px; margin-bottom:auto; margin-top:0.6rem; }
+  .mini-card .nm{ font-family:'Poppins',sans-serif; font-weight:800; font-size:0.42rem; letter-spacing:0.01em; }
+  .mini-card .wave{ width:9px; height:9px; margin-top:0.35rem; }
+  .mini-card--dark{ background: linear-gradient(160deg,#141b26,#080b10); }
+  .mini-card--dark .mark, .mini-card--dark .wave{ color: var(--teal); }
+  .mini-card--dark .nm{ color:#fff; }
+  .mini-card--white{ background: linear-gradient(160deg,#eef1f4,#d9dee3); transform: translateY(6px); }
+  .mini-card--white .mark, .mini-card--white .wave{ color:#0c131e; }
+  .mini-card--white .nm{ color:#0c131e; }
+  .mini-card--purple{ background: linear-gradient(160deg,#241636,#0d0f1c); transform: translateY(-4px); }
+  .mini-card--purple .mark, .mini-card--purple .wave{ color: var(--purple); }
+  .mini-card--purple .nm{ color:#fff; }
+  .mini-card--qr{ background: linear-gradient(160deg,#10161f,#070b11); justify-content:center; }
+  .mini-card--qr .qr-mini{ width:40px; height:40px; background:#fff; border-radius:4px; display:grid; grid-template-columns:repeat(5,1fr); gap:1px; padding:3px; }
+  .mini-card--qr .qr-mini span{ background:#0a0a0a; }
+  .mini-card--qr .qr-mini span.off{ background:transparent; }
+
+  @media (max-width: 820px){
+    .digital__panel{ grid-template-columns:1fr; text-align:center; }
+    .digital__stack{ justify-content:center; }
+  }
+
+  /* ================= CONTACT / ENQUIRY ================= */
+  .contact{ padding-top:1rem; }
+  .contact__grid{ display:grid; grid-template-columns: 1.15fr 1fr; gap:1.6rem; align-items:stretch; }
+  .panel{ background: var(--panel); border:1px solid var(--border); border-radius: var(--radius); padding:2rem; }
+  .panel-head{ display:flex; align-items:center; gap:0.7em; margin-bottom:1.4rem; }
+  .panel-head i{ color: var(--teal); font-size:1.1rem; }
+  .panel-head h3{ font-size:1.15rem; font-weight:800; letter-spacing:0.01em; text-transform:uppercase; }
+
+  form{ display:flex; flex-direction:column; gap:0.9rem; }
+  .field-row{ display:grid; grid-template-columns:1fr 1fr; gap:0.9rem; }
+  .field{ position:relative; }
+  .field i{ position:absolute; left:0.9em; top:50%; transform:translateY(-50%); color:var(--muted-2); font-size:0.9rem; }
+  .field input, .field select, .field textarea{
+    width:100%; background: rgba(255,255,255,0.03); border:1px solid var(--border); color: var(--text);
+    border-radius:7px; padding:0.85em 0.9em 0.85em 2.5em; font-family:'Inter',sans-serif; font-size:0.9rem;
+    appearance:none;
+  }
+  .field textarea{ padding-left:0.9em; padding-top:2.1em; resize:vertical; min-height:90px; }
+  .field textarea + i{ top:1.5em; transform:none; }
+  .field select{ padding-left:0.9em; color: var(--muted); }
+  .field input::placeholder, .field textarea::placeholder{ color: var(--muted-2); }
+  .field input:focus, .field select:focus, .field textarea:focus{ border-color: var(--border-strong); }
+
+  .contact-list{ display:flex; flex-direction:column; gap:0; }
+  .contact-list li{ display:flex; align-items:center; gap:0.9em; padding:0.8em 0; border-bottom:1px dashed var(--border); font-size:0.94rem; }
+  .contact-list li:last-child{ border-bottom:none; }
+  .contact-list i{ width:34px; height:34px; border-radius:50%; background:rgba(34,227,166,0.08); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; color:var(--teal); font-size:0.85rem; flex-shrink:0; }
+  .contact-list li:nth-child(2) i{ color:#25D366; }
+  .contact-list li:nth-child(5) i{ color:#e1306c; }
+  .contact-list a{ color: var(--text); }
+  .contact-list a:hover{ color: var(--teal); }
+
+  .bricks-wrap{ display:flex; justify-content:center; align-items:center; margin-top:1.6rem; }
+  .bricks-wrap svg{ width:130px; height:130px; filter: drop-shadow(0 0 18px rgba(34,227,166,0.55)); }
+
+  @media (max-width: 900px){
+    .contact__grid{ grid-template-columns:1fr; }
+    .field-row{ grid-template-columns:1fr; }
+  }
+
+  /* ================= FOOTER ================= */
+  footer{ border-top:1px solid var(--border); padding-top:3.2rem; }
+  .footer__grid{ display:grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap:2rem; padding-bottom:2rem; }
+  .footer-brand p{ color: var(--muted); font-size:0.9rem; margin-top:0.8rem; max-width:26ch; }
+  .footer-col h4{ font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:1rem; }
+  .footer-col ul{ display:flex; flex-direction:column; gap:0.6rem; }
+  .footer-col a{ font-size:0.9rem; color:#cfd8e0; }
+  .footer-col a:hover{ color: var(--teal); }
+  .footer-socials{ display:flex; gap:0.7rem; }
+  .footer-socials a{
+    width:36px; height:36px; border-radius:50%; border:1px solid var(--border); display:flex; align-items:center; justify-content:center;
+    color:var(--text); transition: border-color .15s ease, color .15s ease;
+  }
+  .footer-socials a:hover{ border-color: var(--teal); color: var(--teal); }
+  .footer-loc{ display:flex; gap:0.6em; align-items:flex-start; font-size:0.9rem; color:#cfd8e0; }
+  .footer-loc i{ color:var(--teal); margin-top:0.2em; }
+  .footer__bottom{
+    border-top:1px solid var(--border); padding:1.3rem 0; display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.6rem;
+    font-size:0.82rem; color: var(--muted-2);
+  }
+  .footer__bottom .heart{ color:#e0455e; }
+
+  @media (max-width: 820px){ .footer__grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width: 520px){ .footer__grid{ grid-template-columns:1fr; } }
+
+  /* ================= FLOATING WHATSAPP ================= */
+  .fab{
+    position:fixed; bottom:1.6rem; right:1.6rem; width:58px; height:58px; border-radius:50%;
+    background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.5rem;
+    box-shadow: 0 10px 26px -6px rgba(37,211,102,0.6); z-index:90;
+  }
+  .fab:hover{ transform: scale(1.06); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+  }
+</style>
 </head>
-
-
 <body>
 
-
-<!-- =========================
-     NAVIGATION
-========================= -->
-
 <header>
-
-  <nav class="navbar">
-
-    <a href="index.html" class="logo">
-      BRICK BY BRICK <span>AI</span>
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <svg class="brand-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 4 L42 14 L24 24 L6 14 Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M6 14 V26 L24 36 V24" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M42 14 V26 L24 36" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+      </svg>
+      BRICK BY BRICK AI
     </a>
-
-    <ul class="nav-links">
-
-      <li>
-        <a href="index.html">🏠 Home</a>
-      </li>
-
-      <li>
-        <a href="about.html">🤖 About</a>
-      </li>
-
-      <li>
-        <a href="mission.html">🎯 Mission & Vision</a>
-      </li>
-
-      <li>
-        <a href="services.html">💼 Services</a>
-      </li>
-
-      <li>
-        <a href="digital-cards.html">📱 Digital Cards</a>
-      </li>
-
-      <li>
-        <a href="contact.html">📞 Contact</a>
-      </li>
-
-      <li>
-        <a
-          class="whatsapp-nav"
-          href="https://wa.me/9633741683"
-          target="_blank">
-          💬 WhatsApp
-        </a>
-      </li>
-
+    <ul class="nav__links">
+      <li><a href="#top" class="active">Home</a></li>
+      <li><a href="#mission">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#digital">Digital Cards</a></li>
+      <li><a href="#mission">Mission &amp; Vision</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-
-  </nav>
-
+    <a class="btn btn-solid" href="https://wa.me/919645741683" target="_blank" rel="noopener">
+      <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+    </a>
+  </div>
 </header>
 
+<main id="top">
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <svg class="hero-lines" viewBox="0 0 600 500" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#22e3a6" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#22e3a6" stop-opacity="0.9"/>
+        </linearGradient>
+      </defs>
+      <path d="M0,120 C150,80 250,180 600,140" stroke="url(#lineGrad)" stroke-width="1.4" fill="none"/>
+      <path d="M0,200 C180,160 260,260 600,210" stroke="url(#lineGrad)" stroke-width="1" fill="none"/>
+      <path d="M0,280 C160,320 300,220 600,300" stroke="url(#lineGrad)" stroke-width="1.2" fill="none"/>
+      <path d="M0,60 C200,40 320,120 600,70" stroke="url(#lineGrad)" stroke-width="0.8" fill="none"/>
+    </svg>
 
-<!-- =========================
-     HERO
-========================= -->
-
-<section class="hero" id="home">
-
-  <div class="hero-content">
-
-    <div class="hero-badge">
-      BRICK BY BRICK AI
-    </div>
-
-    <h1>
-      BUILD <span>SMART.</span>
-      <br>
-      GROW <span>SMART.</span>
-    </h1>
-
-    <h2>
-      We will upgrade you brick by brick
-      to the next level.
-    </h2>
-
-    <p>
-      Smart digital solutions designed to help
-      individuals and businesses build a stronger
-      digital presence.
-    </p>
-
-    <div class="hero-buttons">
-
-      <a href="#services" class="btn btn-primary">
-        Explore Services
-      </a>
-
-      <a href="digital-cards.html"
-         class="btn btn-outline">
-        📱 Digital Business Cards
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     ABOUT
-========================= -->
-
-<section class="about" id="about">
-
-  <div class="container">
-
-    <div class="section-title">
-
-      <div class="small-title">
-        About Us
-      </div>
-
-      <h2>
-        Brick by Brick AI
-      </h2>
-
-      <p>
-        Building your digital presence one smart
-        solution at a time.
-      </p>
-
-    </div>
-
-
-    <div class="about-grid">
-
-      <div class="about-text">
-
-        <h3>
-          Your digital journey,
-          <span>brick by brick.</span>
-        </h3>
-
-        <p>
-          Brick by Brick AI provides practical,
-          modern and affordable digital solutions
-          for individuals, professionals and businesses.
-        </p>
-
-        <p>
-          From NFC and QR business cards to smart
-          accessories, we help you connect,
-          communicate and grow digitally.
-        </p>
-
-        <a href="about.html"
-           class="btn btn-primary">
-          Learn More
-        </a>
-
-      </div>
-
-
-      <div class="about-box">
-
-        <h3>
-          Our Philosophy
-        </h3>
-
-        <p>
-          Every successful digital journey starts
-          with one small step. We help you build
-          that journey brick by brick until you
-          reach the next level.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     SERVICES
-========================= -->
-
-<section class="services" id="services">
-
-  <div class="container">
-
-    <div class="section-title">
-
-      <div class="small-title">
-        What We Offer
-      </div>
-
-      <h2>
-        Our Services
-      </h2>
-
-      <p>
-        Smart products designed to make your
-        business more connected.
-      </p>
-
-    </div>
-
-
-    <div class="service-grid">
-
-
-      <div class="service-card">
-
-        <div class="service-icon">
-          💳
+    <div class="wrap hero__grid">
+      <div>
+        <h1>Build your business<br><span class="grad-text">Brick by Brick AI</span></h1>
+        <p class="lead">We will upgrade you brick by brick to the next level.</p>
+        <div class="hero__ctas">
+          <a class="btn btn-solid" href="#services"><i class="fa-regular fa-id-card"></i> Explore Services</a>
+          <a class="btn btn-outline" href="https://wa.me/919645741683" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
         </div>
-
-        <h3>
-          Smart Business Card
-        </h3>
-
-        <p>
-          NFC / QR digital business cards
-          that make sharing your details
-          simple and professional.
-        </p>
-
       </div>
 
-
-      <div class="service-card">
-
-        <div class="service-icon">
-          ⭐
-        </div>
-
-        <h3>
-          Google Review Card
-        </h3>
-
-        <p>
-          NFC / QR review cards that help
-          customers quickly find and review
-          your business.
-        </p>
-
-      </div>
-
-
-      <div class="service-card">
-
-        <div class="service-icon">
-          ⌚
-        </div>
-
-        <h3>
-          Smart Bands
-        </h3>
-
-        <p>
-          Smart wearable products designed
-          for quick digital interaction.
-        </p>
-
-      </div>
-
-
-      <div class="service-card">
-
-        <div class="service-icon">
-          🔑
-        </div>
-
-        <h3>
-          Smart Keychains
-        </h3>
-
-        <p>
-          Compact NFC and smart accessories
-          for convenient digital sharing.
-        </p>
-
-      </div>
-
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     DIGITAL BUSINESS CARDS
-========================= -->
-
-<section class="digital-card">
-
-  <div class="container">
-
-    <div class="digital-grid">
-
-
-      <div class="digital-content">
-
-        <div class="small-title"
-             style="color:#ff9d00;">
-          DIGITAL BUSINESS CARDS
-        </div>
-
-        <h2>
-          Share your identity
-          <span>instantly.</span>
-        </h2>
-
-        <p>
-          Replace traditional paper business cards
-          with a modern NFC / QR digital business card.
-        </p>
-
-        <ul class="features">
-
-          <li>
-            NFC technology
-          </li>
-
-          <li>
-            QR code sharing
-          </li>
-
-          <li>
-            Easy contact sharing
-          </li>
-
-          <li>
-            Professional digital profile
-          </li>
-
-          <li>
-            Works with smartphones
-          </li>
-
-        </ul>
-
-        <a href="digital-cards.html"
-           class="btn btn-primary">
-          View Digital Cards
-        </a>
-
-      </div>
-
-
-      <div class="card-preview">
-
-        <div class="preview-inner">
-
-          <div class="preview-logo">
-            BRICK BY BRICK
+      <div class="hero__visual">
+        <div class="pedestal"></div>
+        <div class="card-stack">
+          <div class="card card--id">
+            <svg class="mark" viewBox="0 0 48 48" fill="none">
+              <path d="M24 4 L42 14 L24 24 L6 14 Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+              <path d="M6 14 V26 L24 36 V24" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+              <path d="M42 14 V26 L24 36" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+            </svg>
+            <div class="name">BRICK BY BRICK AI</div>
+            <div class="sub">Smart Digital Card</div>
+            <svg class="nfc" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0 1 16 0M7 12a5 5 0 0 1 10 0M10 12a2 2 0 0 1 4 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </div>
-
-          <div class="preview-circle">
-            BB
+          <div class="card card--scan">
+            <div class="tap"><i class="fa-regular fa-circle"></i>Tap or Scan</div>
+            <div class="qr" aria-hidden="true">
+              <script>document.write(Array.from({length:49}).map(()=> '<span class="'+(Math.random()>0.42?'':'off')+'"></span>').join(''));</script>
+            </div>
+            <div class="icons">
+              <i class="fa-regular fa-comment-dots"></i>
+              <i class="fa-brands fa-whatsapp"></i>
+              <i class="fa-solid fa-phone"></i>
+            </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-          <h3>
-            Smart Digital Card
-          </h3>
+  <!-- ================= SERVICES ================= -->
+  <section id="services">
+    <div class="wrap">
+      <div class="services__head">
+        <span class="eyebrow">What we offer</span>
+        <h2>Our Services</h2>
+      </div>
+      <div class="services__grid">
+        <div class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+          <h3>Smart Business Card</h3>
+          <span class="service-tag">NFC / QR</span>
+          <p>Share your details instantly with a single tap or scan.</p>
+          <a class="btn btn-outline" href="#contact">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-star"></i></div>
+          <h3>Google Review Card</h3>
+          <span class="service-tag">NFC / QR</span>
+          <p>Get more reviews easily and grow your business.</p>
+          <a class="btn btn-outline" href="#contact">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-stopwatch"></i></div>
+          <h3>Smart Bands</h3>
+          <span class="service-tag">&nbsp;</span>
+          <p>Stylish smart bands for modern people.</p>
+          <a class="btn btn-outline" href="#contact">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-key"></i></div>
+          <h3>Smart Keychains</h3>
+          <span class="service-tag">&nbsp;</span>
+          <p>Smart keychains that make you stand out.</p>
+          <a class="btn btn-outline" href="#contact">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-          <p>
-            Tap • Scan • Connect
-          </p>
+  <!-- ================= MISSION ================= -->
+  <section class="mission" id="mission">
+    <div class="wrap">
+      <div class="mission__panel">
+        <div class="mission__copy">
+          <span class="eyebrow">Mission &amp; Vision</span>
+          <h2>Our Vision. Our Mission.</h2>
+          <p>We will upgrade you brick by brick to the next level.</p>
+          <a class="btn btn-outline" href="#contact">Discover More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="mission__media">
+          <svg viewBox="0 0 600 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Silhouette of a person with arms raised on a mountain peak at sunrise">
+            <defs>
+              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#1a2436"/>
+                <stop offset="55%" stop-color="#2c3348"/>
+                <stop offset="100%" stop-color="#0c1019"/>
+              </linearGradient>
+              <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ffe9b8"/>
+                <stop offset="45%" stop-color="#f5c065" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#f5c065" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="600" height="320" fill="url(#sky)"/>
+            <circle cx="430" cy="150" r="90" fill="url(#sun)"/>
+            <circle cx="430" cy="150" r="26" fill="#ffe6ab"/>
+            <path d="M0,230 L90,150 L160,205 L230,120 L300,200 L360,140 L430,210 L500,160 L600,220 L600,320 L0,320 Z" fill="#131826" opacity="0.9"/>
+            <path d="M0,260 L120,190 L210,240 L300,170 L420,245 L520,190 L600,250 L600,320 L0,320 Z" fill="#0a0d14"/>
+            <g transform="translate(300,205)">
+              <circle cx="0" cy="-46" r="9" fill="#05070b"/>
+              <path d="M0,-37 L0,10" stroke="#05070b" stroke-width="6" stroke-linecap="round"/>
+              <path d="M0,-28 L-28,-52" stroke="#05070b" stroke-width="6" stroke-linecap="round"/>
+              <path d="M0,-28 L28,-52" stroke="#05070b" stroke-width="6" stroke-linecap="round"/>
+              <path d="M0,10 L-16,44" stroke="#05070b" stroke-width="6" stroke-linecap="round"/>
+              <path d="M0,10 L16,44" stroke="#05070b" stroke-width="6" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ================= DIGITAL CARDS ================= -->
+  <section class="digital" id="digital">
+    <div class="wrap">
+      <div class="digital__panel">
+        <div class="digital__copy">
+          <span class="eyebrow">Smart Solutions</span>
+          <h2>Digital Business Cards</h2>
+          <p>Discover our smart digital cards and take your business identity to the next level.</p>
+        </div>
+        <div class="digital__stack" aria-hidden="true">
+          <div class="mini-card mini-card--dark">
+            <svg class="mark" viewBox="0 0 48 48" fill="none"><path d="M24 4 L42 14 L24 24 L6 14 Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M6 14 V26 L24 36 V24" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M42 14 V26 L24 36" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>
+            <div class="nm">BRICK BY BRICK</div>
+            <svg class="wave" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0 1 16 0M7 12a5 5 0 0 1 10 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="mini-card mini-card--white">
+            <svg class="mark" viewBox="0 0 48 48" fill="none"><path d="M24 4 L42 14 L24 24 L6 14 Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M6 14 V26 L24 36 V24" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M42 14 V26 L24 36" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>
+            <div class="nm">BRICK BY BRICK</div>
+            <svg class="wave" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0 1 16 0M7 12a5 5 0 0 1 10 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="mini-card mini-card--purple">
+            <svg class="mark" viewBox="0 0 48 48" fill="none"><path d="M24 4 L42 14 L24 24 L6 14 Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M6 14 V26 L24 36 V24" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M42 14 V26 L24 36" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>
+            <div class="nm">BRICK BY BRICK</div>
+            <svg class="wave" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0 1 16 0M7 12a5 5 0 0 1 10 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="mini-card mini-card--qr">
+            <div class="qr-mini">
+              <script>document.write(Array.from({length:25}).map(()=> '<span class="'+(Math.random()>0.4?'':'off')+'"></span>').join(''));</script>
+            </div>
+          </div>
+        </div>
+        <a class="btn btn-outline" href="#contact">View Digital Cards <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT / ENQUIRY ================= -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="contact__grid">
+        <div class="panel">
+          <div class="panel-head"><i class="fa-solid fa-user-tie"></i><h3>Send an Enquiry</h3></div>
+          <form id="enquiryForm">
+            <div class="field-row">
+              <div class="field"><i class="fa-regular fa-user"></i><input type="text" placeholder="Your Name" required></div>
+              <div class="field"><i class="fa-solid fa-phone"></i><input type="tel" placeholder="Phone / WhatsApp" required></div>
+            </div>
+            <div class="field"><i class="fa-regular fa-envelope"></i><input type="email" placeholder="Email Address"></div>
+            <div class="field">
+              <select required>
+                <option value="" selected disabled>Select a Service</option>
+                <option>Smart Business Card</option>
+                <option>Google Review Card</option>
+                <option>Smart Bands</option>
+                <option>Smart Keychains</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div class="field"><i class="fa-regular fa-comment-dots"></i><textarea placeholder="Your Enquiry / Message" required></textarea></div>
+            <button type="submit" class="btn btn-solid btn-block">Send Enquiry <i class="fa-solid fa-paper-plane"></i></button>
+            <p id="formNote" style="font-size:0.82rem;color:var(--muted);display:none;">Thanks — we've got your enquiry and will reply on WhatsApp shortly.</p>
+          </form>
         </div>
 
+        <div class="panel">
+          <div class="panel-head"><h3 style="color:var(--teal);">Contact Us</h3></div>
+          <ul class="contact-list">
+            <li><i class="fa-solid fa-phone"></i><a href="tel:+919645741683">+91 96457 41683</a></li>
+            <li><i class="fa-brands fa-whatsapp"></i><a href="https://wa.me/919645741683" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><i class="fa-regular fa-envelope"></i><a href="mailto:go.easylife2026@gmail.com">go.easylife2026@gmail.com</a></li>
+            <li><i class="fa-solid fa-location-dot"></i><a href="#contact">Thodupuzha</a></li>
+            <li><i class="fa-brands fa-instagram"></i><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          </ul>
+          <div class="bricks-wrap">
+            <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g stroke="#22e3a6" stroke-width="2" stroke-linejoin="round">
+                <path d="M60 8 L100 26 L60 44 L20 26 Z"/>
+                <path d="M20 26 V50 L60 68 V44"/>
+                <path d="M100 26 V50 L60 68"/>
+                <path d="M30 55 L70 73 L70 97 L30 79 Z"/>
+                <path d="M70 73 L100 59 L100 83 L70 97 Z"/>
+              </g>
+            </svg>
+          </div>
+        </div>
       </div>
-
-
     </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     WHY BRICK BY BRICK
-========================= -->
-
-<section class="why-us">
-
-  <div class="container">
-
-    <div class="section-title">
-
-      <div class="small-title">
-        Why Choose Us
-      </div>
-
-      <h2>
-        Simple. Smart. Digital.
-      </h2>
-
-    </div>
-
-
-    <div class="why-grid">
-
-
-      <div class="why-card">
-
-        <h3>
-          🚀 Modern
-        </h3>
-
-        <p>
-          We use modern digital technologies
-          to create practical solutions.
-        </p>
-
-      </div>
-
-
-      <div class="why-card">
-
-        <h3>
-          📱 Easy
-        </h3>
-
-        <p>
-          Our products are designed to be
-          simple for you and your customers.
-        </p>
-
-      </div>
-
-
-      <div class="why-card">
-
-        <h3>
-          🧱 Built Brick by Brick
-        </h3>
-
-        <p>
-          We focus on steady digital growth
-          rather than complicated solutions.
-        </p>
-
-      </div>
-
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     CONTACT
-========================= -->
-
-<section class="contact" id="contact">
-
-  <div class="contact-box">
-
-    <h2>
-      Ready to go to the next level?
-    </h2>
-
-    <p>
-      Let's build your digital presence
-      brick by brick.
-    </p>
-
-    <div class="contact-buttons">
-
-      <a
-        class="contact-btn"
-        href="tel:+919645741683">
-        📞 Call Us
-      </a>
-
-      <a
-        class="contact-btn"
-        href="https://wa.me/9633741683"
-        target="_blank">
-        💬 WhatsApp
-      </a>
-
-      <a
-        class="contact-btn"
-        href="mailto:go.easylife2026@gmail.com">
-        📧 Email
-      </a>
-
-      <a
-        class="contact-btn"
-        href="https://www.instagram.com/_go_easy_"
-        target="_blank">
-        📸 Instagram
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
+  </section>
+</main>
 
 <footer>
-
-  <div class="footer-grid">
-
-
-    <div>
-
-      <h3>
-        BRICK BY BRICK
-        <span>AI</span>
-      </h3>
-
-      <p>
-        We will upgrade you brick by brick
-        to the next level.
-      </p>
-
-      <p style="margin-top:12px;">
-        📍 Thodupuzha
-      </p>
-
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer-brand">
+        <a href="#top" class="brand">
+          <svg class="brand-mark" viewBox="0 0 48 48" fill="none"><path d="M24 4 L42 14 L24 24 L6 14 Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M6 14 V26 L24 36 V24" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M42 14 V26 L24 36" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+          BRICK BY BRICK AI
+        </a>
+        <p>We will upgrade you brick by brick to the next level.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#mission">About</a></li>
+          <li><a href="#services">Services</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>&nbsp;</h4>
+        <ul>
+          <li><a href="#digital">Digital Cards</a></li>
+          <li><a href="#mission">Mission &amp; Vision</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <div class="footer-socials">
+          <a href="https://wa.me/919645741683" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+        <h4 style="margin-top:1.6rem;">Our Location</h4>
+        <div class="footer-loc"><i class="fa-solid fa-location-dot"></i><span>Thodupuzha<br>Kerala, India</span></div>
+      </div>
     </div>
-
-
-    <div>
-
-      <h3>
-        Quick Links
-      </h3>
-
-      <ul>
-
-        <li>
-          <a href="index.html">
-            Home
-          </a>
-        </li>
-
-        <li>
-          <a href="about.html">
-            About
-          </a>
-        </li>
-
-        <li>
-          <a href="mission.html">
-            Mission & Vision
-          </a>
-        </li>
-
-        <li>
-          <a href="services.html">
-            Services
-          </a>
-        </li>
-
-        <li>
-          <a href="digital-cards.html">
-            Digital Cards
-          </a>
-        </li>
-
-        <li>
-          <a href="contact.html">
-            Contact
-          </a>
-        </li>
-
-      </ul>
-
+    <div class="footer__bottom">
+      <span>© <span id="year"></span> Brick By Brick AI. All Rights Reserved.</span>
+      <span>Designed with <span class="heart">❤</span> by Brick By Brick AI</span>
     </div>
-
-
-    <div>
-
-      <h3>
-        Contact
-      </h3>
-
-      <ul>
-
-        <li>
-          📞
-          <a href="tel:+919645741683">
-            9645741683
-          </a>
-        </li>
-
-        <li>
-          💬
-          <a
-            href="https://wa.me/9633741683"
-            target="_blank">
-            WhatsApp
-          </a>
-        </li>
-
-        <li>
-          📧
-          <a
-            href="mailto:go.easylife2026@gmail.com">
-            Email
-          </a>
-        </li>
-
-        <li>
-          📍 Thodupuzha
-        </li>
-
-      </ul>
-
-    </div>
-
-
   </div>
-
-
-  <div class="copyright">
-
-    © 2026 Brick by Brick AI.
-    All Rights Reserved.
-
-  </div>
-
 </footer>
 
+<a class="fab" href="https://wa.me/919645741683" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('enquiryForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('formNote').style.display = 'block';
+    this.reset();
+  });
+</script>
 
 </body>
 </html>
+
