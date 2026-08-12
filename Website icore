@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>i Core Mobile Service Center — Thodupuzha</title>
+<meta name="description" content="Phone screen, battery, and charging port repair in Thodupuzha, Kerala. Free diagnostics, honest turnaround times, 5.0 rated.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1b19;
+    --paper:#e8e9e1;
+    --paper-2:#dbdccb;
+    --bench:#132320;
+    --bench-2:#1c3733;
+    --stamp:#b23a2e;
+    --teal:#1f6f6b;
+    --copper:#b8703a;
+    --line: rgba(28,27,25,0.16);
+    --line-soft: rgba(232,233,225,0.22);
+    --radius: 2px;
+    --space-1: 0.5rem;
+    --space-2: 1rem;
+    --space-3: 1.75rem;
+    --space-4: 3rem;
+    --space-5: 5rem;
+    --space-6: 8rem;
+    --max: 72rem;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color: inherit; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 var(--space-3); }
+
+  h1,h2,h3{ margin:0; font-family:'JetBrains Mono', monospace; font-weight:800; letter-spacing:-0.01em; }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--stamp);
+    font-weight: 700;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:0.5em;
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    font-size:0.85rem;
+    letter-spacing:0.03em;
+    text-decoration:none;
+    padding: 0.85em 1.4em;
+    border-radius: var(--radius);
+    border: 1.5px solid var(--ink);
+    cursor:pointer;
+    transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+  .btn-solid{ background: var(--ink); color: var(--paper); }
+  .btn-solid:hover{ background: var(--stamp); border-color: var(--stamp); color:#fff; }
+  .btn-ghost{ background: transparent; color: var(--ink); }
+  .btn-ghost:hover{ background: var(--ink); color: var(--paper); }
+  .btn:active{ transform: translateY(1px); }
+  a:focus-visible, button:focus-visible{ outline: 3px solid var(--teal); outline-offset: 2px; }
+
+  /* ---------- perforation & torn edge utility ---------- */
+  .perf{
+    height: 14px;
+    background-image: radial-gradient(circle 5px, var(--paper) 5px, transparent 5.5px);
+    background-repeat: repeat-x;
+    background-position: 0 center;
+    background-size: 20px 14px;
+  }
+  .perf-bench{
+    background-image: radial-gradient(circle 5px, var(--bench) 5px, transparent 5.5px);
+  }
+
+  /* ================= HEADER ================= */
+  header{
+    position: sticky; top:0; z-index: 50;
+    background: var(--paper);
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: var(--space-2) var(--space-3);
+    max-width: var(--max); margin:0 auto;
+  }
+  .logo{
+    display:flex; align-items:center; gap:0.6em;
+    font-family:'JetBrains Mono',monospace; font-weight:800; font-size:1.05rem;
+    text-decoration:none; color:var(--ink);
+  }
+  .logo-mark{
+    width:34px; height:34px; border-radius:50%;
+    border:1.5px solid var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.9rem; background: var(--ink); color: var(--paper);
+  }
+  .nav-links{ display:flex; gap: var(--space-3); list-style:none; margin:0; padding:0; }
+  .nav-links a{ text-decoration:none; font-size:0.92rem; font-weight:600; padding-bottom:2px; border-bottom: 2px solid transparent; }
+  .nav-links a:hover{ border-color: var(--stamp); }
+  .nav-cta{ display:flex; gap:0.6em; }
+  .nav-toggle{ display:none; }
+
+  @media (max-width: 860px){
+    .nav-links{ display:none; }
+  }
+
+  /* ================= HERO ================= */
+  .hero{
+    padding: var(--space-5) 0 var(--space-4);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.05fr 0.95fr; gap: var(--space-5);
+    align-items:center;
+  }
+  .hero-rating{
+    display:inline-flex; align-items:center; gap:0.5em;
+    font-family:'JetBrains Mono',monospace; font-size:0.78rem; font-weight:700;
+    background: var(--ink); color: var(--paper);
+    padding: 0.4em 0.8em; border-radius: 999px;
+    margin-bottom: var(--space-2);
+  }
+  .hero h1{
+    font-size: clamp(2.3rem, 4.6vw, 3.6rem);
+    line-height: 1.04;
+    margin-bottom: var(--space-2);
+  }
+  .hero h1 em{ font-style:normal; color: var(--stamp); }
+  .hero p.lead{
+    font-size: 1.1rem; max-width: 34ch; color:#3a3733; margin-bottom: var(--space-3);
+  }
+  .hero-ctas{ display:flex; gap: 0.9em; flex-wrap:wrap; margin-bottom: var(--space-3); }
+  .hero-trust{ display:flex; gap: var(--space-3); flex-wrap:wrap; }
+  .hero-trust div{ font-size:0.82rem; color:#4a4742; }
+  .hero-trust strong{ display:block; font-family:'JetBrains Mono',monospace; font-size:1.3rem; color:var(--ink); }
+
+  /* the ticket stub */
+  .ticket{
+    background:#fdfcf8;
+    border: 1.5px solid var(--ink);
+    padding: var(--space-3) var(--space-3) var(--space-4);
+    position:relative;
+    transform: rotate(1.6deg);
+    box-shadow: 10px 12px 0 rgba(28,27,25,0.08);
+  }
+  .ticket-top{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    border-bottom: 1.5px dashed var(--line);
+    padding-bottom: var(--space-2); margin-bottom: var(--space-2);
+  }
+  .ticket-id{ font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:#6b675f; }
+  .ticket-id b{ display:block; color:var(--ink); font-size:1.05rem; }
+  .ticket-stamp{
+    font-family:'JetBrains Mono',monospace; font-weight:800; font-size:0.72rem;
+    color: var(--teal); border: 2px solid var(--teal); border-radius:4px;
+    padding: 0.25em 0.6em; transform: rotate(-6deg);
+    letter-spacing: 0.05em;
+  }
+  .ticket-row{ display:flex; justify-content:space-between; gap:1em; padding: 0.55em 0; font-size:0.92rem; border-bottom: 1px dotted var(--line); }
+  .ticket-row span:first-child{ color:#5c5850; }
+  .ticket-row span:last-child{ font-family:'JetBrains Mono',monospace; font-weight:600; text-align:right; }
+  .ticket-foot{ margin-top: var(--space-2); font-size:0.78rem; color:#6b675f; }
+  .ticket-clip{
+    position:absolute; top:-10px; right: 28px;
+    width: 40px; height: 22px; background: var(--copper);
+    border-radius: 3px 3px 12px 12px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.25);
+    transform: rotate(-3deg);
+  }
+
+  /* ================= TRUST STRIP ================= */
+  .trust-strip{
+    border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);
+    background: var(--paper-2);
+  }
+  .trust-strip ul{
+    list-style:none; margin:0; padding: var(--space-2) var(--space-3);
+    max-width: var(--max); margin:0 auto;
+    display:flex; flex-wrap:wrap; gap: var(--space-4);
+    justify-content:space-between;
+  }
+  .trust-strip li{
+    font-family:'JetBrains Mono',monospace; font-size:0.78rem; font-weight:700;
+    display:flex; align-items:center; gap:0.5em; letter-spacing:0.01em;
+  }
+  .trust-strip li::before{ content:"◆"; color:var(--stamp); font-size:0.65rem; }
+
+  /* ================= SECTION HEADINGS ================= */
+  section{ padding: var(--space-5) 0; }
+  .sec-head{ max-width: 42rem; margin-bottom: var(--space-4); }
+  .sec-head h2{ font-size: clamp(1.6rem, 3vw, 2.1rem); margin-top: 0.4em; }
+  .sec-head p{ color:#4a4742; margin-top:0.8em; font-size:1.02rem; }
+
+  /* ================= SERVICES (receipt) ================= */
+  .receipt{
+    background:#fdfcf8; border:1.5px solid var(--ink);
+    max-width: 46rem; margin: 0 auto;
+    padding: var(--space-4);
+  }
+  .receipt-line{
+    display:flex; justify-content:space-between; gap:1.5em;
+    padding: var(--space-2) 0; border-bottom: 1.5px dashed var(--line);
+  }
+  .receipt-line:last-child{ border-bottom:none; }
+  .receipt-line .item h3{ font-family:'Manrope',sans-serif; font-weight:800; font-size:1.02rem; }
+  .receipt-line .item p{ margin:0.3em 0 0; font-size:0.88rem; color:#5c5850; max-width: 34ch; }
+  .receipt-line .price{ font-family:'JetBrains Mono',monospace; font-weight:700; white-space:nowrap; align-self:flex-start; margin-top:0.15em; color:var(--stamp); }
+  .receipt-total{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-top: var(--space-2); padding-top: var(--space-2);
+    border-top: 1.5px solid var(--ink); font-family:'JetBrains Mono',monospace;
+  }
+  .receipt-total span:first-child{ font-size:0.8rem; color:#5c5850; }
+  .receipt-note{ text-align:center; font-size:0.82rem; color:#6b675f; margin-top: var(--space-2); }
+
+  /* ================= PROCESS ================= */
+  .process{ background: var(--bench); color: var(--paper); }
+  .process .sec-head p{ color: #a9c2bf; }
+  .process .eyebrow{ color:#e08a72; }
+  .steps{
+    display:grid; grid-template-columns: repeat(4,1fr); gap: var(--space-3);
+    counter-reset: step;
+    position:relative;
+  }
+  .step{ position:relative; padding-top: var(--space-2); }
+  .step::before{
+    content: "0" counter(step) "";
+    counter-increment: step;
+    font-family:'JetBrains Mono',monospace; font-weight:800; font-size:0.78rem;
+    color: var(--bench); background: var(--paper);
+    display:inline-block; padding:0.25em 0.6em; border-radius: 2px;
+    margin-bottom: 0.9em;
+  }
+  .step h3{ font-size:1.02rem; font-family:'Manrope',sans-serif; font-weight:800; margin-bottom:0.4em; }
+  .step p{ font-size:0.88rem; color:#c7d6d4; margin:0; }
+  .steps::after{
+    content:""; position:absolute; top: 2.05em; left:6%; right:6%; height:1.5px;
+    background: repeating-linear-gradient(90deg, var(--line-soft) 0 10px, transparent 10px 16px);
+    z-index:0;
+  }
+
+  @media (max-width: 860px){
+    .steps{ grid-template-columns: 1fr 1fr; }
+    .steps::after{ display:none; }
+  }
+
+  /* ================= REVIEWS ================= */
+  .reviews-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: var(--space-3); }
+  .review-card{
+    background:#fdfcf8; border:1.5px solid var(--ink);
+    padding: var(--space-3); position:relative;
+  }
+  .review-card:nth-child(1){ transform: rotate(-1.2deg); }
+  .review-card:nth-child(2){ transform: rotate(0.8deg); }
+  .review-card:nth-child(3){ transform: rotate(-0.5deg); }
+  .review-stars{ color: var(--stamp); letter-spacing:0.15em; font-size:0.9rem; margin-bottom:0.6em; }
+  .review-card p{ font-size:0.94rem; margin:0 0 1em; color:#3a3733; }
+  .review-who{ font-family:'JetBrains Mono',monospace; font-size:0.76rem; color:#6b675f; }
+  .rating-badge{
+    display:inline-flex; align-items:baseline; gap:0.5em; margin-bottom: var(--space-2);
+  }
+  .rating-badge .num{ font-family:'JetBrains Mono',monospace; font-weight:800; font-size:2.4rem; }
+  .rating-badge .stars{ color: var(--stamp); font-size:1.1rem; letter-spacing:0.1em; }
+  .rating-badge .of{ font-size:0.85rem; color:#6b675f; }
+
+  @media (max-width: 860px){ .reviews-grid{ grid-template-columns: 1fr; } }
+
+  /* ================= VISIT ================= */
+  .visit{ background: var(--paper-2); }
+  .visit-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); align-items:stretch; }
+  .visit-card{ background:#fdfcf8; border:1.5px solid var(--ink); padding: var(--space-4); }
+  .visit-card h3{ font-size:1.3rem; margin-bottom: var(--space-2); }
+  .visit-row{ display:flex; gap:1em; padding: var(--space-2) 0; border-bottom:1px dotted var(--line); }
+  .visit-row:last-of-type{ border-bottom:none; }
+  .visit-row .k{ font-family:'JetBrains Mono',monospace; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.08em; color: var(--teal); width:6.5rem; flex-shrink:0; padding-top:0.2em; }
+  .visit-row .v{ font-size:0.96rem; }
+  .visit-ctas{ display:flex; gap:0.8em; margin-top: var(--space-3); flex-wrap:wrap; }
+  .map-frame{ border:1.5px solid var(--ink); overflow:hidden; min-height: 320px; height:100%; }
+  .map-frame iframe{ width:100%; height:100%; min-height:320px; border:0; display:block; filter: grayscale(0.15) contrast(1.05); }
+
+  @media (max-width: 860px){ .visit-grid{ grid-template-columns: 1fr; } }
+
+  /* ================= FOOTER ================= */
+  footer{ background: var(--bench); color: var(--paper); padding: var(--space-4) 0 var(--space-3); }
+  .footer-grid{ display:flex; justify-content:space-between; flex-wrap:wrap; gap: var(--space-3); align-items:flex-start; }
+  .footer-brand{ font-family:'JetBrains Mono',monospace; font-weight:800; font-size:1.1rem; }
+  .footer-tag{ font-size:0.85rem; color:#a9c2bf; margin-top:0.5em; max-width:28ch; }
+  .footer-links{ list-style:none; display:flex; gap:1.6em; padding:0; margin:0; font-size:0.85rem; }
+  .footer-links a{ text-decoration:none; color:#c7d6d4; }
+  .footer-links a:hover{ color:#fff; }
+  .footer-bottom{ margin-top: var(--space-3); padding-top: var(--space-2); border-top:1px solid var(--line-soft); font-size:0.76rem; color:#7f9a97; display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.5em; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  @media (max-width: 720px){
+    .hero-grid{ grid-template-columns: 1fr; gap: var(--space-4); }
+    .ticket{ transform: rotate(0.6deg); }
+    .receipt{ padding: var(--space-3); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#top" class="logo">
+      <span class="logo-mark">iC</span>
+      i Core Mobile
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">How it works</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#visit">Visit us</a></li>
+    </ul>
+    <div class="nav-cta">
+      <!-- TODO: replace with the shop's real phone number -->
+      <a class="btn btn-solid" href="tel:+9197469990772">Call Now</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="hero-rating">★ 5.0 rated · Thodupuzha, Kerala</span>
+        <h1>Cracked screen?<br>We write the <em>last</em> ticket it'll ever need.</h1>
+        <p class="lead">Screen, battery, charging port, and water-damage repair for every major phone brand — diagnosed for free, fixed while you wait.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-solid" href="tel:+9197469990772">Call the shop</a>
+          <a class="btn btn-ghost" href="https://wa.me/9197469990772" target="_blank" rel="noopener">WhatsApp a photo</a>
+        </div>
+        <div class="hero-trust">
+          <div><strong>4</strong>verified reviews</div>
+          <div><strong>Same-day</strong>most repairs</div>
+          <div><strong>Free</strong>diagnostics</div>
+        </div>
+      </div>
+
+      <div class="ticket" aria-hidden="false">
+        <div class="ticket-clip"></div>
+        <div class="ticket-top">
+          <div class="ticket-id">DEVICE INTAKE<b>#IC-0417</b></div>
+          <div class="ticket-stamp">IN PROGRESS</div>
+        </div>
+        <div class="ticket-row"><span>Device</span><span>Smartphone, cracked screen</span></div>
+        <div class="ticket-row"><span>Diagnosis</span><span>Free, on the spot</span></div>
+        <div class="ticket-row"><span>Parts</span><span>Genuine / OEM-grade</span></div>
+        <div class="ticket-row"><span>Turnaround</span><span>Same day, most repairs</span></div>
+        <div class="ticket-row"><span>Warranty</span><span>Included on repair</span></div>
+        <div class="ticket-foot">Hand this to the counter — or just walk in. iCore, Thodupuzha.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perf" role="presentation"></div>
+
+  <!-- ============ TRUST STRIP ============ -->
+  <div class="trust-strip">
+    <ul>
+      <li>Genuine &amp; OEM-grade parts</li>
+      <li>Trained technicians</li>
+      <li>Free diagnostics</li>
+      <li>Warranty on every repair</li>
+    </ul>
+  </div>
+
+  <!-- ============ SERVICES ============ -->
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head" style="margin-left:auto;margin-right:auto;text-align:center;">
+        <span class="eyebrow">The ticket</span>
+        <h2>What we fix, line by line</h2>
+        <p>Every job starts with a free look at the phone. Final cost depends on the model and the damage — here's what to expect.</p>
+      </div>
+
+      <div class="receipt">
+        <div class="receipt-line">
+          <div class="item"><h3>Screen replacement</h3><p>Cracked glass, dead pixels, or an unresponsive display.</p></div>
+          <div class="price">On inspection</div>
+        </div>
+        <div class="receipt-line">
+          <div class="item"><h3>Battery replacement</h3><p>Draining fast, swelling, or won't hold a charge.</p></div>
+          <div class="price">On inspection</div>
+        </div>
+        <div class="receipt-line">
+          <div class="item"><h3>Charging port repair</h3><p>Loose connection, won't charge, or slow charging.</p></div>
+          <div class="price">On inspection</div>
+        </div>
+        <div class="receipt-line">
+          <div class="item"><h3>Water damage recovery</h3><p>Dropped in water — the sooner it comes in, the better the odds.</p></div>
+          <div class="price">On inspection</div>
+        </div>
+        <div class="receipt-line">
+          <div class="item"><h3>Camera &amp; speaker repair</h3><p>Blurry shots, no sound, or a camera that won't focus.</p></div>
+          <div class="price">On inspection</div>
+        </div>
+        <div class="receipt-line">
+          <div class="item"><h3>Software &amp; data issues</h3><p>Boot loops, frozen screens, backup and data recovery.</p></div>
+          <div class="price">On inspection</div>
+        </div>
+        <div class="receipt-total">
+          <span>DIAGNOSIS</span>
+          <span>FREE, ALWAYS</span>
+        </div>
+      </div>
+      <p class="receipt-note">Bring the phone in for an exact quote — no repair starts without your go-ahead.</p>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section id="process" class="process">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Start to finish</span>
+        <h2>Four stops from broken to back in your pocket</h2>
+        <p>The same route every phone takes through the shop, so you always know where yours is.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Drop off</h3><p>Bring the phone in, describe what happened — no appointment needed.</p></div>
+        <div class="step"><h3>Diagnose</h3><p>We open it up, confirm the fault, and quote you before touching anything.</p></div>
+        <div class="step"><h3>Repair</h3><p>Genuine or OEM-grade parts, fitted by a trained technician on site.</p></div>
+        <div class="step"><h3>Pickup</h3><p>We test everything in front of you, then hand it back with a warranty.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perf perf-bench" role="presentation" style="background-color:var(--paper-2);"></div>
+
+  <!-- ============ REVIEWS ============ -->
+  <section id="reviews">
+    <div class="wrap">
+      <div class="sec-head" style="margin-left:auto;margin-right:auto;text-align:center;">
+        <span class="eyebrow">Word around Thodupuzha</span>
+        <div class="rating-badge" style="display:flex;justify-content:center;">
+          <span class="num">5.0</span>
+          <span class="stars">★★★★★</span>
+          <span class="of">from verified visits</span>
+        </div>
+        <h2 style="font-size:1.4rem;">What customers say</h2>
+        <!-- TODO: swap these three for real Google review quotes -->
+        <p>Sample testimonials below — replace with real reviews before launch.</p>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p>Screen was cracked corner to corner. They quoted me on the spot and had it done in a couple of hours.</p>
+          <div class="review-who">— Google review, Thodupuzha</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p>Honest about what actually needed replacing instead of upselling the whole board. Appreciated that.</p>
+          <div class="review-who">— Google review, Thodupuzha</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p>Battery was swelling and they caught it before it got worse. Straightforward, no drama.</p>
+          <div class="review-who">— Google review, Thodupuzha</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VISIT ============ -->
+  <section id="visit" class="visit">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Come by</span>
+        <h2>Find the shop</h2>
+      </div>
+      <div class="visit-grid">
+        <div class="visit-card">
+          <h3>i Core Mobile Service Center</h3>
+          <div class="visit-row"><div class="k">Address</div><div class="v"><!-- TODO: exact address --> Thodupuzha, Idukki, Kerala 685584</div></div>
+          <div class="visit-row"><div class="k">Phone</div><div class="v">+91 97469 90772</div></div>
+          <div class="visit-row"><div class="k">Hours</div><div class="v"><!-- TODO: confirm hours --> Mon–Sat, 10:00 AM – 7:00 PM</div></div>
+          <div class="visit-row"><div class="k">Rating</div><div class="v">5.0 ★ · Mobile phone repair shop</div></div>
+          <div class="visit-ctas">
+            <a class="btn btn-solid" href="tel:+9197469990772">Call now</a>
+            <a class="btn btn-ghost" href="https://wa.me/9197469990772" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+        <div class="map-frame">
+          <iframe
+            src="https://www.google.com/maps?q=i+Core+Mobile+Service+Center+Thodupuzha+Kerala&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Map to i Core Mobile Service Center, Thodupuzha">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="perf" role="presentation" style="background-color:var(--bench);"></div>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div>
+      <div class="footer-brand">iCore Mobile</div>
+      <p class="footer-tag">Phone repair in Thodupuzha — screens, batteries, ports, and everything in between.</p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">How it works</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#visit">Visit us</a></li>
+    </ul>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© <span id="year"></span> i Core Mobile Service Center, Thodupuzha</span>
+    <span>Ticket #IC-0417 · Handle with care</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Jagged "torn ticket" bottom edge, generated so it scales cleanly at any width.
+  (function(){
+    var el = document.querySelector('.ticket');
+    if(!el) return;
+    var teeth = 18;
+    var points = ['0% 0%','100% 0%','100% 96%'];
+    for(var i = teeth; i >= 0; i--){
+      var x = (i / teeth) * 100;
+      var y = i % 2 === 0 ? 100 : 94;
+      points.push(x.toFixed(2) + '% ' + y + '%');
+    }
+    points.push('0% 96%');
+    el.style.clipPath = 'polygon(' + points.join(',') + ')';
+  })();
+</script>
+
+</body>
+</html>
