@@ -4,576 +4,542 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Shamsudheen Latheef | Brick by Brick | Card #000001</title>
-
-<!-- Font Awesome Icons -->
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
->
+<title>Shamsudheen Latheef | Brick by Brick</title>
 
 <style>
-
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
 body{
-  min-height:100vh;
-  background:#020504;
-  color:#ffffff;
   font-family:Arial,Helvetica,sans-serif;
+  background:#020706;
+  color:#fff;
+  line-height:1.6;
+}
+
+/* Background */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background:
+    radial-gradient(circle at 10% 20%,rgba(0,255,170,.12),transparent 30%),
+    radial-gradient(circle at 90% 80%,rgba(0,170,255,.10),transparent 30%),
+    linear-gradient(135deg,#020504,#061711,#020504);
+}
+
+/* Navigation */
+nav{
+  position:sticky;
+  top:0;
+  z-index:1000;
 
   display:flex;
-  justify-content:center;
+  justify-content:space-between;
   align-items:center;
 
-  padding:20px;
+  padding:18px 6%;
+
+  background:rgba(2,7,6,.88);
+  backdrop-filter:blur(15px);
+
+  border-bottom:1px solid rgba(0,255,170,.18);
 }
 
-
-/* =========================
-   MAIN CARD
-========================= */
-
-.card{
-  width:100%;
-  max-width:1100px;
-
-  position:relative;
-  overflow:hidden;
-
-  background:
-    radial-gradient(
-      circle at 20% 35%,
-      rgba(20,100,65,.28),
-      transparent 30%
-    ),
-    linear-gradient(
-      135deg,
-      #020807,
-      #001b12 55%,
-      #003b25
-    );
-
-  border:2px solid #c99a32;
-  border-radius:32px;
-
-  padding:42px 55px 25px;
-
-  box-shadow:
-    0 0 30px rgba(201,154,50,.18),
-    inset 0 0 80px rgba(0,0,0,.75);
-}
-
-
-/* Decorative green curve */
-
-.card::before{
-  content:"";
-
-  position:absolute;
-
-  width:700px;
-  height:700px;
-
-  right:-350px;
-  top:-370px;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(15,91,61,.9),
-      rgba(0,35,22,.2)
-    );
-
-  border:2px solid rgba(201,154,50,.65);
-
-  border-radius:50%;
-
-  transform:rotate(20deg);
-}
-
-.card::after{
-  content:"";
-
-  position:absolute;
-
-  width:650px;
-  height:650px;
-
-  right:-320px;
-  top:-350px;
-
-  border:1px solid rgba(201,154,50,.45);
-
-  border-radius:50%;
-
-  transform:rotate(20deg);
-}
-
-
-/* =========================
-   CONTENT
-========================= */
-
-.content{
-  position:relative;
-  z-index:2;
-}
-
-
-/* =========================
-   BRICK BY BRICK LOGO
-========================= */
-
-.brand{
-  display:flex;
-  align-items:center;
-
-  gap:14px;
-
-  color:#e5b94f;
-
-  font-size:25px;
-  font-weight:bold;
-
+.logo{
+  color:#00ffae;
+  font-size:20px;
+  font-weight:800;
   letter-spacing:1px;
-
-  margin-bottom:35px;
 }
 
-.brick-logo{
-  width:48px;
-  height:42px;
-
-  position:relative;
+.nav-links{
+  display:flex;
+  gap:25px;
 }
 
-.brick-logo span{
-  position:absolute;
-
-  width:13px;
-  height:10px;
-
-  background:#e5b94f;
-
-  border-radius:2px;
+.nav-links a{
+  color:#d5e8e2;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:600;
 }
 
-.b1{left:0;top:0}
-.b2{left:17px;top:0}
-.b3{left:34px;top:0}
-.b4{left:8px;top:15px}
-.b5{left:25px;top:15px}
-.b6{left:0;top:30px}
-.b7{left:17px;top:30px}
-.b8{left:34px;top:30px}
+.nav-links a:hover{
+  color:#00ffae;
+}
 
+/* Hero */
+.hero{
+  min-height:90vh;
 
-/* =========================
-   PROFILE
-========================= */
-
-.profile{
   display:flex;
   align-items:center;
 
-  gap:75px;
+  padding:70px 6%;
 }
 
-.avatar{
-  width:210px;
-  height:210px;
+.hero-inner{
+  width:100%;
+  max-width:1150px;
+  margin:auto;
 
-  flex-shrink:0;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
 
-  border-radius:50%;
-
-  display:flex;
+  gap:60px;
   align-items:center;
-  justify-content:center;
+}
 
-  font-size:76px;
+.badge{
+  display:inline-block;
+
+  padding:8px 15px;
+  margin-bottom:20px;
+
+  border:1px solid rgba(0,255,174,.4);
+  border-radius:30px;
+
+  color:#00ffae;
+  font-size:12px;
   font-weight:bold;
-
-  color:#f2d27a;
-
-  background:
-    radial-gradient(
-      circle,
-      #082b20,
-      #02100c
-    );
-
-  border:5px solid #d3a83e;
-
-  box-shadow:
-    0 0 0 8px rgba(211,168,62,.08),
-    0 0 25px rgba(211,168,62,.3);
+  letter-spacing:1px;
 }
 
+.hero h1{
+  font-size:clamp(45px,7vw,80px);
+  line-height:1;
+  margin-bottom:20px;
+}
 
-.details h1{
-  font-size:55px;
-  line-height:1.05;
-
-  margin-bottom:14px;
+.hero h1 span{
+  color:#00ffae;
 }
 
 .company{
-  font-size:28px;
-  color:#e4b64b;
+  color:#e5f8f1;
+  font-size:22px;
+  font-weight:bold;
+  margin-bottom:15px;
 }
 
-.line{
-  width:90px;
-  height:4px;
-
-  background:#d6aa3d;
-
-  margin-top:28px;
-
-  border-radius:10px;
+.hero-description{
+  max-width:650px;
+  color:#a8bbb5;
+  font-size:18px;
 }
 
-
-/* =========================
-   ACTION BUTTONS
-========================= */
-
-.actions{
-  margin-top:45px;
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(5,1fr);
-
-  gap:20px;
-}
-
-.action{
-  text-decoration:none;
-
-  color:#ffffff;
-
+.hero-buttons{
   display:flex;
-  flex-direction:column;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:30px;
+}
 
+/* Buttons */
+.btn{
+  min-height:48px;
+
+  display:inline-flex;
   align-items:center;
   justify-content:center;
 
-  gap:10px;
+  padding:12px 20px;
+
+  border-radius:12px;
+
+  text-decoration:none;
+
+  font-size:14px;
+  font-weight:700;
+
+  color:#fff;
+
+  background:#0a1713;
+
+  border:1px solid rgba(255,255,255,.15);
+
+  cursor:pointer;
+
+  transition:.2s;
 }
 
-.icon{
-  width:82px;
-  height:82px;
+.btn:hover{
+  transform:translateY(-2px);
+  border-color:#00ffae;
+}
+
+.btn.primary{
+  background:#00ffae;
+  color:#03100b;
+  border-color:#00ffae;
+}
+
+/* Profile */
+.profile{
+  display:flex;
+  justify-content:center;
+}
+
+.avatar{
+  width:280px;
+  height:280px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
   border-radius:50%;
 
-  display:flex;
+  color:#00ffae;
 
-  align-items:center;
-  justify-content:center;
-
-  font-size:36px;
-
-  color:#f1c75b;
+  font-size:80px;
+  font-weight:900;
 
   background:
-    radial-gradient(
-      circle at 35% 30%,
-      #12623e,
-      #00281a
-    );
+    radial-gradient(circle,#123e31,#04110d);
 
-  border:2px solid #b99337;
+  border:2px solid #00ffae;
 
   box-shadow:
-    inset 0 0 20px rgba(0,0,0,.4),
-    0 0 15px rgba(201,154,50,.12);
+    0 0 30px rgba(0,255,174,.25),
+    0 0 100px rgba(0,255,174,.08);
+}
+
+/* Sections */
+.section{
+  max-width:1150px;
+  margin:auto;
+  padding:90px 6%;
+}
+
+.section-label{
+  color:#00ffae;
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+
+.section h2{
+  font-size:40px;
+  margin-bottom:18px;
+}
+
+.section-description{
+  max-width:750px;
+  color:#a8bbb5;
+}
+
+/* Cards */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:35px;
+}
+
+.card{
+  padding:28px;
+
+  border-radius:20px;
+
+  background:rgba(7,25,19,.75);
+
+  border:1px solid rgba(0,255,174,.13);
 
   transition:.25s;
 }
 
-.action span{
-  font-size:19px;
+.card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(0,255,174,.45);
 }
 
-.action:hover .icon{
-  transform:
-    translateY(-5px)
-    scale(1.05);
-
-  box-shadow:
-    0 0 22px
-    rgba(224,180,70,.45);
-}
-
-
-/* =========================
-   CONTACT PANEL
-========================= */
-
-.contact-panel{
-  margin-top:35px;
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  background:
-    rgba(0,30,20,.78);
-
-  border:
-    1px solid
-    rgba(190,170,80,.55);
-
-  border-radius:20px;
-
-  overflow:hidden;
-}
-
-.contact{
-  padding:25px 30px;
-
-  border-right:
-    1px solid
-    rgba(190,170,80,.45);
-}
-
-.contact:last-child{
-  border-right:none;
-}
-
-.contact-title{
-  color:#e4b64b;
-
-  font-size:20px;
-
+.card-icon{
+  font-size:30px;
   margin-bottom:15px;
 }
 
-.contact-value{
-  font-size:20px;
+.card h3{
+  margin-bottom:8px;
+}
 
+.card p{
+  color:#9fb3ac;
+}
+
+/* Contact */
+.contact-box{
+  margin-top:35px;
+
+  padding:10px 28px;
+
+  border-radius:22px;
+
+  background:rgba(7,25,19,.78);
+
+  border:1px solid rgba(0,255,174,.2);
+}
+
+.contact-row{
+  display:flex;
+  justify-content:space-between;
+  gap:25px;
+
+  padding:20px 0;
+
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.contact-row:last-child{
+  border-bottom:none;
+}
+
+.contact-label{
+  color:#00ffae;
+  font-size:13px;
+  font-weight:bold;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  min-width:150px;
+}
+
+.contact-value{
+  text-align:right;
+  color:#fff;
   word-break:break-word;
 }
 
+.contact-value a{
+  color:#fff;
+  text-decoration:none;
+}
 
-/* =========================
-   FOOTER
-========================= */
+.contact-value a:hover{
+  color:#00ffae;
+}
 
-.footer{
-  margin-top:30px;
-
+/* Contact action buttons */
+.contact-actions{
   display:flex;
-
-  justify-content:center;
-  align-items:center;
-
-  gap:18px;
-
-  color:#e4b64b;
-
-  font-size:21px;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:25px;
 }
 
-.dot{
-  width:10px;
-  height:10px;
+/* Footer */
+footer{
+  text-align:center;
 
-  background:#e4b64b;
+  padding:35px 6%;
 
-  border-radius:50%;
+  border-top:1px solid rgba(255,255,255,.08);
+
+  color:#71847e;
+
+  font-size:13px;
 }
 
+footer strong{
+  color:#00ffae;
+}
 
-/* =========================
-   MOBILE
-========================= */
-
+/* Mobile */
 @media(max-width:800px){
 
-  body{
-    padding:10px;
-
-    align-items:flex-start;
+  nav{
+    flex-direction:column;
+    gap:12px;
   }
 
-  .card{
-    padding:
-      30px
-      22px
-      22px;
-
-    border-radius:24px;
-  }
-
-  .brand{
-    font-size:19px;
-
-    margin-bottom:25px;
-  }
-
-  .profile{
-    gap:25px;
-  }
-
-  .avatar{
-    width:130px;
-    height:130px;
-
-    font-size:48px;
-  }
-
-  .details h1{
-    font-size:32px;
-  }
-
-  .company{
-    font-size:19px;
-  }
-
-  .line{
-    margin-top:18px;
-  }
-
-  .actions{
-    gap:10px;
-
-    margin-top:30px;
-  }
-
-  .icon{
-    width:58px;
-    height:58px;
-
-    font-size:25px;
-  }
-
-  .action span{
-    font-size:13px;
-  }
-
-  .contact-panel{
-    margin-top:28px;
-  }
-
-  .contact{
-    padding:18px 12px;
-  }
-
-  .contact-title{
-    font-size:14px;
-  }
-
-  .contact-value{
-    font-size:13px;
-  }
-
-  .footer{
-    font-size:14px;
-
-    gap:10px;
-  }
-}
-
-
-/* =========================
-   SMALL PHONES
-========================= */
-
-@media(max-width:500px){
-
-  .profile{
+  .nav-links{
     gap:15px;
   }
 
+  .hero{
+    padding-top:50px;
+  }
+
+  .hero-inner{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .profile{
+    order:-1;
+  }
+
   .avatar{
-    width:100px;
-    height:100px;
-
-    font-size:35px;
+    width:190px;
+    height:190px;
+    font-size:55px;
   }
 
-  .details h1{
-    font-size:25px;
+  .hero-description{
+    margin:auto;
   }
 
-  .company{
-    font-size:16px;
+  .hero-buttons{
+    justify-content:center;
   }
 
-  .actions{
-    grid-template-columns:
-      repeat(5,1fr);
+  .cards{
+    grid-template-columns:1fr;
   }
 
-  .icon{
-    width:48px;
-    height:48px;
-
-    font-size:20px;
+  .section h2{
+    font-size:32px;
   }
 
-  .action span{
-    font-size:11px;
-  }
-
-  .contact-title{
-    font-size:12px;
+  .contact-row{
+    flex-direction:column;
+    gap:7px;
   }
 
   .contact-value{
-    font-size:11px;
+    text-align:left;
   }
 }
 
+@media(max-width:450px){
+
+  .nav-links{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .hero h1{
+    font-size:42px;
+  }
+
+  .hero-buttons{
+    flex-direction:column;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+  .contact-actions{
+    flex-direction:column;
+  }
+}
 </style>
 </head>
 
-
 <body>
 
-<div class="card">
+<!-- =========================
+     NAVIGATION
+========================= -->
 
-  <div class="content">
+<nav>
+
+  <div class="logo">
+    🧱 BRICK BY BRICK
+  </div>
+
+  <div class="nav-links">
+
+    <a href="#home">Home</a>
+
+    <a href="#about">About</a>
+
+    <a href="#contact">Contact</a>
+
+  </div>
+
+</nav>
 
 
-    <!-- =====================
-         BRAND
-    ====================== -->
+<!-- =========================
+     HOME
+========================= -->
 
-    <div class="brand">
+<section id="home" class="hero">
 
-      <div class="brick-logo">
+  <div class="hero-inner">
 
-        <span class="b1"></span>
-        <span class="b2"></span>
-        <span class="b3"></span>
-        <span class="b4"></span>
-        <span class="b5"></span>
-        <span class="b6"></span>
-        <span class="b7"></span>
-        <span class="b8"></span>
+    <div>
+
+      <div class="badge">
+        DIGITAL PROFESSIONAL PORTFOLIO
+      </div>
+
+      <h1>
+        Shamsudheen
+        <span>Latheef</span>
+      </h1>
+
+      <div class="company">
+        Poonawalla Fincorp
+      </div>
+
+      <p class="hero-description">
+        A professional digital profile designed to make
+        connecting simple, fast and convenient.
+      </p>
+
+
+      <div class="hero-buttons">
+
+        <a
+          class="btn primary"
+          href="tel:+918714816090"
+        >
+          📞 Call
+        </a>
+
+
+        <a
+          class="btn"
+          href="https://wa.me/918714816090"
+          target="_blank"
+          rel="noopener"
+        >
+          💬 WhatsApp
+        </a>
+
+
+        <a
+          class="btn"
+          href="mailto:shamsudeenlf@gmail.com"
+        >
+          ✉️ Email
+        </a>
+
+
+        <a
+          class="btn"
+          href="https://www.instagram.com/shamzadam?igsh=Z2I5dWF3dHloZjVp"
+          target="_blank"
+          rel="noopener"
+        >
+          📷 Instagram
+        </a>
+
+
+        <button
+          class="btn primary"
+          onclick="saveContact()"
+        >
+          👤 Save Contact
+        </button>
 
       </div>
 
-      BRICK BY BRICK
-
     </div>
 
-
-    <!-- =====================
-         PROFILE
-    ====================== -->
 
     <div class="profile">
 
@@ -581,270 +547,373 @@ body{
         SL
       </div>
 
-      <div class="details">
-
-        <h1>
-          Shamsudheen<br>
-          Latheef
-        </h1>
-
-        <div class="company">
-          Poonawalla Fincorp
-        </div>
-
-        <div class="line"></div>
-
-      </div>
-
     </div>
-
-
-    <!-- =====================
-         ACTION BUTTONS
-    ====================== -->
-
-    <div class="actions">
-
-
-      <!-- CALL -->
-
-      <a
-        class="action"
-        href="tel:+919645741683"
-      >
-
-        <div class="icon">
-          <i class="fa-solid fa-phone"></i>
-        </div>
-
-        <span>Call</span>
-
-      </a>
-
-
-      <!-- WHATSAPP -->
-
-      <a
-        class="action"
-        href="https://wa.me/919645741683"
-        target="_blank"
-        rel="noopener"
-      >
-
-        <div class="icon">
-          <i class="fa-brands fa-whatsapp"></i>
-        </div>
-
-        <span>WhatsApp</span>
-
-      </a>
-
-
-      <!-- EMAIL -->
-
-      <a
-        class="action"
-        href="mailto:go.easylife2026@gmail.com"
-      >
-
-        <div class="icon">
-          <i class="fa-solid fa-envelope"></i>
-        </div>
-
-        <span>Email</span>
-
-      </a>
-
-
-      <!-- INSTAGRAM -->
-
-      <a
-        class="action"
-        href="https://www.instagram.com/_go_easy_/"
-        target="_blank"
-        rel="noopener"
-      >
-
-        <div class="icon">
-          <i class="fa-brands fa-instagram"></i>
-        </div>
-
-        <span>Instagram</span>
-
-      </a>
-
-
-      <!-- SAVE CONTACT -->
-
-      <a
-        class="action"
-        href="#save"
-        id="saveContact"
-      >
-
-        <div class="icon">
-          <i class="fa-solid fa-user-plus"></i>
-        </div>
-
-        <span>Save Contact</span>
-
-      </a>
-
-    </div>
-
-
-    <!-- =====================
-         CONTACT INFORMATION
-    ====================== -->
-
-    <div class="contact-panel">
-
-
-      <div class="contact">
-
-        <div class="contact-title">
-
-          <i class="fa-solid fa-phone"></i>
-          &nbsp; Phone
-
-        </div>
-
-        <div class="contact-value">
-
-          +91 9645741683
-
-        </div>
-
-      </div>
-
-
-      <div class="contact">
-
-        <div class="contact-title">
-
-          <i class="fa-brands fa-whatsapp"></i>
-          &nbsp; WhatsApp
-
-        </div>
-
-        <div class="contact-value">
-
-          +91 9645741683
-
-        </div>
-
-      </div>
-
-
-      <div class="contact">
-
-        <div class="contact-title">
-
-          <i class="fa-solid fa-envelope"></i>
-          &nbsp; Email
-
-        </div>
-
-        <div class="contact-value">
-
-          go.easylife2026@gmail.com
-
-        </div>
-
-      </div>
-
-
-    </div>
-
-
-    <!-- =====================
-         FOOTER
-    ====================== -->
-
-    <div class="footer">
-
-      <span>
-        Brick by Brick
-      </span>
-
-      <span class="dot"></span>
-
-      <span>
-        Card #000001
-      </span>
-
-    </div>
-
 
   </div>
 
-</div>
+</section>
 
 
 <!-- =========================
-     SAVE CONTACT SCRIPT
+     ABOUT
+========================= -->
+
+<section id="about" class="section">
+
+  <div class="section-label">
+    About
+  </div>
+
+  <h2>
+    Professional. Connected. Digital.
+  </h2>
+
+  <p class="section-description">
+    Welcome to the digital profile of Shamsudheen Latheef,
+    associated with Poonawalla Fincorp.
+    Use the options below to connect directly.
+  </p>
+
+
+  <div class="cards">
+
+    <div class="card">
+
+      <div class="card-icon">
+        💼
+      </div>
+
+      <h3>
+        Professional Profile
+      </h3>
+
+      <p>
+        A simple digital space for professional
+        communication and networking.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-icon">
+        ⚡
+      </div>
+
+      <h3>
+        Quick Connection
+      </h3>
+
+      <p>
+        Call, WhatsApp or email directly
+        without searching for contact details.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-icon">
+        📍
+      </div>
+
+      <h3>
+        Working Location
+      </h3>
+
+      <p>
+        Open the working location using
+        the button below.
+      </p>
+
+      <br>
+
+      <a
+        class="btn"
+        href="https://share.google/0VJDu0c9M5WanAFjM"
+        target="_blank"
+        rel="noopener"
+      >
+        📍 Open Location
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section id="contact" class="section">
+
+  <div class="section-label">
+    Contact
+  </div>
+
+  <h2>
+    Let's Connect
+  </h2>
+
+  <p class="section-description">
+    All contact information is available below.
+  </p>
+
+
+  <div class="contact-box">
+
+
+    <!-- NAME -->
+
+    <div class="contact-row">
+
+      <div class="contact-label">
+        👤 Name
+      </div>
+
+      <div class="contact-value">
+        Shamsudheen Latheef
+      </div>
+
+    </div>
+
+
+    <!-- COMPANY -->
+
+    <div class="contact-row">
+
+      <div class="contact-label">
+        💼 Company
+      </div>
+
+      <div class="contact-value">
+        Poonawalla Fincorp
+      </div>
+
+    </div>
+
+
+    <!-- PHONE -->
+
+    <div class="contact-row">
+
+      <div class="contact-label">
+        📞 Phone
+      </div>
+
+      <div class="contact-value">
+
+        <a href="tel:+918714816090">
+          +91 87148 16090
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- WHATSAPP -->
+
+    <div class="contact-row">
+
+      <div class="contact-label">
+        💬 WhatsApp
+      </div>
+
+      <div class="contact-value">
+
+        <a
+          href="https://wa.me/918714816090"
+          target="_blank"
+          rel="noopener"
+        >
+          +91 87148 16090
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- EMAIL -->
+
+    <div class="contact-row">
+
+      <div class="contact-label">
+        ✉️ Email
+      </div>
+
+      <div class="contact-value">
+
+        <a href="mailto:shamsudeenlf@gmail.com">
+          shamsudeenlf@gmail.com
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- INSTAGRAM -->
+
+    <div class="contact-row">
+
+      <div class="contact-label">
+        📷 Instagram
+      </div>
+
+      <div class="contact-value">
+
+        <a
+          href="https://www.instagram.com/shamzadam?igsh=Z2I5dWF3dHloZjVp"
+          target="_blank"
+          rel="noopener"
+        >
+          @shamzadam
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- WORKING LOCATION -->
+
+    <div class="contact-row">
+
+      <div class="contact-label">
+        📍 Working Location
+      </div>
+
+      <div class="contact-value">
+
+        <a
+          href="https://share.google/0VJDu0c9M5WanAFjM"
+          target="_blank"
+          rel="noopener"
+        >
+          Open Working Location →
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- CONTACT BUTTONS -->
+
+  <div class="contact-actions">
+
+    <a
+      class="btn primary"
+      href="tel:+918714816090"
+    >
+      📞 Call Me
+    </a>
+
+
+    <a
+      class="btn"
+      href="https://wa.me/918714816090"
+      target="_blank"
+      rel="noopener"
+    >
+      💬 WhatsApp Me
+    </a>
+
+
+    <a
+      class="btn"
+      href="mailto:shamsudeenlf@gmail.com"
+    >
+      ✉️ Email Me
+    </a>
+
+
+    <button
+      class="btn primary"
+      onclick="saveContact()"
+    >
+      👤 Save Contact
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <strong>🧱 Brick by Brick</strong>
+
+  <br><br>
+
+  Digital Professional Portfolio
+
+</footer>
+
+
+<!-- =========================
+     SAVE CONTACT
 ========================= -->
 
 <script>
 
-document
-.getElementById("saveContact")
-.addEventListener("click", function(e){
-
-  e.preventDefault();
-
+function saveContact(){
 
   const vcard =
 `BEGIN:VCARD
 VERSION:3.0
 FN:Shamsudheen Latheef
+N:Latheef;Shamsudheen;;;
 ORG:Poonawalla Fincorp
-TEL;TYPE=CELL:+919645741683
-EMAIL:go.easylife2026@gmail.com
-URL:https://www.instagram.com/_go_easy_/
-NOTE:Brick by Brick - Card #000001
+TEL;TYPE=CELL:+918714816090
+EMAIL;TYPE=INTERNET:shamsudeenlf@gmail.com
+URL:https://www.instagram.com/shamzadam
+ADR;TYPE=WORK:;;;Working Location;;;
+NOTE:Shamsudheen Latheef - Poonawalla Fincorp
 END:VCARD`;
 
-
-  const blob =
-    new Blob(
-      [vcard],
-      {type:"text/vcard"}
-    );
-
+  const blob = new Blob(
+    [vcard],
+    {
+      type:"text/vcard;charset=utf-8"
+    }
+  );
 
   const url =
     URL.createObjectURL(blob);
 
-
   const link =
     document.createElement("a");
-
 
   link.href = url;
 
   link.download =
-    "Shamsudheen-Latheef-Card-000001.vcf";
+    "Shamsudheen-Latheef.vcf";
 
-
-  document
-    .body
-    .appendChild(link);
-
+  document.body.appendChild(link);
 
   link.click();
 
-
-  document
-    .body
-    .removeChild(link);
-
+  document.body.removeChild(link);
 
   URL.revokeObjectURL(url);
 
-});
+}
 
 </script>
 
 </body>
-</html>
+      </html>
