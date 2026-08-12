@@ -4,328 +4,847 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Shamsudheen Latheef | Brick by Brick</title>
+<title>Shamsudheen Latheef | Brick by Brick | Card #000001</title>
+
+<!-- Font Awesome Icons -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
 
 <style>
-* {
-  box-sizing: border-box;
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-:root {
-  --green-dark: #061b16;
-  --green: #0d3025;
-  --green-light: #164b3a;
-  --gold: #d6b45c;
-  --gold-light: #f0d98a;
-  --white: #ffffff;
-  --text-light: #e9eee9;
-  --muted: #b8c8c0;
-  --border: rgba(214,180,92,0.45);
+body{
+  min-height:100vh;
+  background:#020504;
+  color:#ffffff;
+  font-family:Arial,Helvetica,sans-serif;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  padding:20px;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
+
+/* =========================
+   MAIN CARD
+========================= */
+
+.card{
+  width:100%;
+  max-width:1100px;
+
+  position:relative;
+  overflow:hidden;
+
   background:
-    radial-gradient(circle at top right, #174c3a 0%, transparent 35%),
-    linear-gradient(145deg, #020b08, #09241b 55%, #03100c);
-  color: var(--white);
-  display: flex;
-  justify-content: center;
-  padding: 20px 12px;
-}
+    radial-gradient(
+      circle at 20% 35%,
+      rgba(20,100,65,.28),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #020807,
+      #001b12 55%,
+      #003b25
+    );
 
-.card {
-  width: 100%;
-  max-width: 520px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 28px;
-  background: rgba(5, 22, 17, 0.96);
+  border:2px solid #c99a32;
+  border-radius:32px;
+
+  padding:42px 55px 25px;
+
   box-shadow:
-    0 20px 60px rgba(0,0,0,0.55),
-    0 0 35px rgba(214,180,92,0.08);
+    0 0 30px rgba(201,154,50,.18),
+    inset 0 0 80px rgba(0,0,0,.75);
 }
 
-/* TOP */
-.top {
-  padding: 32px 22px 28px;
-  text-align: center;
+
+/* Decorative green curve */
+
+.card::before{
+  content:"";
+
+  position:absolute;
+
+  width:700px;
+  height:700px;
+
+  right:-350px;
+  top:-370px;
+
   background:
-    radial-gradient(circle at 80% 10%, rgba(214,180,92,0.14), transparent 35%),
-    linear-gradient(145deg, #071c16, #0c3024);
-  border-bottom: 1px solid var(--border);
+    linear-gradient(
+      135deg,
+      rgba(15,91,61,.9),
+      rgba(0,35,22,.2)
+    );
+
+  border:2px solid rgba(201,154,50,.65);
+
+  border-radius:50%;
+
+  transform:rotate(20deg);
 }
 
-.brand {
-  color: var(--gold-light);
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  margin-bottom: 25px;
+.card::after{
+  content:"";
+
+  position:absolute;
+
+  width:650px;
+  height:650px;
+
+  right:-320px;
+  top:-350px;
+
+  border:1px solid rgba(201,154,50,.45);
+
+  border-radius:50%;
+
+  transform:rotate(20deg);
 }
 
-.avatar {
-  width: 115px;
-  height: 115px;
-  margin: 0 auto 22px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-  font-weight: 700;
-  color: var(--gold-light);
-  background: #0b2a20;
-  border: 3px solid var(--gold);
+
+/* =========================
+   CONTENT
+========================= */
+
+.content{
+  position:relative;
+  z-index:2;
+}
+
+
+/* =========================
+   BRICK BY BRICK LOGO
+========================= */
+
+.brand{
+  display:flex;
+  align-items:center;
+
+  gap:14px;
+
+  color:#e5b94f;
+
+  font-size:25px;
+  font-weight:bold;
+
+  letter-spacing:1px;
+
+  margin-bottom:35px;
+}
+
+.brick-logo{
+  width:48px;
+  height:42px;
+
+  position:relative;
+}
+
+.brick-logo span{
+  position:absolute;
+
+  width:13px;
+  height:10px;
+
+  background:#e5b94f;
+
+  border-radius:2px;
+}
+
+.b1{left:0;top:0}
+.b2{left:17px;top:0}
+.b3{left:34px;top:0}
+.b4{left:8px;top:15px}
+.b5{left:25px;top:15px}
+.b6{left:0;top:30px}
+.b7{left:17px;top:30px}
+.b8{left:34px;top:30px}
+
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile{
+  display:flex;
+  align-items:center;
+
+  gap:75px;
+}
+
+.avatar{
+  width:210px;
+  height:210px;
+
+  flex-shrink:0;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:76px;
+  font-weight:bold;
+
+  color:#f2d27a;
+
+  background:
+    radial-gradient(
+      circle,
+      #082b20,
+      #02100c
+    );
+
+  border:5px solid #d3a83e;
+
   box-shadow:
-    0 0 0 7px rgba(214,180,92,0.08),
-    0 0 30px rgba(214,180,92,0.15);
+    0 0 0 8px rgba(211,168,62,.08),
+    0 0 25px rgba(211,168,62,.3);
 }
 
-h1 {
-  margin: 0;
-  font-size: 31px;
-  line-height: 1.15;
-  color: #fff;
+
+.details h1{
+  font-size:55px;
+  line-height:1.05;
+
+  margin-bottom:14px;
 }
 
-.company {
-  margin-top: 10px;
-  font-size: 18px;
-  color: var(--gold-light);
+.company{
+  font-size:28px;
+  color:#e4b64b;
 }
 
-/* CONTENT */
-.content {
-  padding: 25px 20px 30px;
+.line{
+  width:90px;
+  height:4px;
+
+  background:#d6aa3d;
+
+  margin-top:28px;
+
+  border-radius:10px;
 }
 
-/* BUTTONS */
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.actions{
+  margin-top:45px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(5,1fr);
+
+  gap:20px;
 }
 
-.button {
-  min-height: 58px;
-  padding: 12px 10px;
-  border-radius: 16px;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--white);
-  background: #0d2c22;
-  border: 1px solid rgba(214,180,92,0.35);
-  transition: 0.2s ease;
+.action{
+  text-decoration:none;
+
+  color:#ffffff;
+
+  display:flex;
+  flex-direction:column;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:10px;
 }
 
-.button:hover {
-  transform: translateY(-2px);
-  border-color: var(--gold);
+.icon{
+  width:82px;
+  height:82px;
+
+  border-radius:50%;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  font-size:36px;
+
+  color:#f1c75b;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #12623e,
+      #00281a
+    );
+
+  border:2px solid #b99337;
+
+  box-shadow:
+    inset 0 0 20px rgba(0,0,0,.4),
+    0 0 15px rgba(201,154,50,.12);
+
+  transition:.25s;
 }
 
-.button.primary {
-  background: linear-gradient(135deg, #a98532, #e0c56d);
-  color: #08150f;
-  border: none;
+.action span{
+  font-size:19px;
 }
 
-.button.full {
-  grid-column: 1 / -1;
+.action:hover .icon{
+  transform:
+    translateY(-5px)
+    scale(1.05);
+
+  box-shadow:
+    0 0 22px
+    rgba(224,180,70,.45);
 }
 
-.icon {
-  font-size: 22px;
+
+/* =========================
+   CONTACT PANEL
+========================= */
+
+.contact-panel{
+  margin-top:35px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  background:
+    rgba(0,30,20,.78);
+
+  border:
+    1px solid
+    rgba(190,170,80,.55);
+
+  border-radius:20px;
+
+  overflow:hidden;
 }
 
-/* DETAILS */
-.details {
-  margin-top: 28px;
-  padding: 20px;
-  border-radius: 18px;
-  background: rgba(14,53,40,0.72);
-  border: 1px solid rgba(214,180,92,0.25);
+.contact{
+  padding:25px 30px;
+
+  border-right:
+    1px solid
+    rgba(190,170,80,.45);
 }
 
-.detail {
-  display: flex;
-  gap: 14px;
-  padding: 13px 0;
-  border-bottom: 1px solid rgba(214,180,92,0.15);
+.contact:last-child{
+  border-right:none;
 }
 
-.detail:last-child {
-  border-bottom: none;
+.contact-title{
+  color:#e4b64b;
+
+  font-size:20px;
+
+  margin-bottom:15px;
 }
 
-.detail-icon {
-  width: 32px;
-  flex-shrink: 0;
-  color: var(--gold-light);
-  font-size: 20px;
+.contact-value{
+  font-size:20px;
+
+  word-break:break-word;
 }
 
-.detail-label {
-  display: block;
-  color: var(--gold-light);
-  font-size: 12px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 4px;
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  margin-top:30px;
+
+  display:flex;
+
+  justify-content:center;
+  align-items:center;
+
+  gap:18px;
+
+  color:#e4b64b;
+
+  font-size:21px;
 }
 
-.detail-value {
-  color: #fff;
-  font-size: 15px;
-  word-break: break-word;
+.dot{
+  width:10px;
+  height:10px;
+
+  background:#e4b64b;
+
+  border-radius:50%;
 }
 
-/* THEME SWITCHER */
-.theme-section {
-  margin-top: 28px;
-  padding-top: 22px;
-  border-top: 1px solid rgba(214,180,92,0.18);
-}
 
-.theme-title {
-  text-align: center;
-  color: var(--gold-light);
-  font-size: 13px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
+/* =========================
+   MOBILE
+========================= */
 
-.themes {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
+@media(max-width:800px){
 
-.theme-btn {
-  flex: 1;
-  padding: 11px 7px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.18);
-  background: #10251f;
-  color: white;
-  font-size: 12px;
-  cursor: pointer;
-}
+  body{
+    padding:10px;
 
-.theme-btn.active {
-  border-color: var(--gold);
-  color: var(--gold-light);
-  box-shadow: 0 0 12px rgba(214,180,92,0.15);
-}
-
-/* FOOTER */
-.footer {
-  padding: 18px;
-  text-align: center;
-  font-size: 13px;
-  color: var(--muted);
-  border-top: 1px solid rgba(214,180,92,0.18);
-}
-
-.footer strong {
-  color: var(--gold-light);
-}
-
-/* RESPONSIVE */
-@media (max-width: 400px) {
-  h1 {
-    font-size: 27px;
+    align-items:flex-start;
   }
 
-  .buttons {
-    grid-template-columns: 1fr;
+  .card{
+    padding:
+      30px
+      22px
+      22px;
+
+    border-radius:24px;
   }
 
-  .button.full {
-    grid-column: auto;
+  .brand{
+    font-size:19px;
+
+    margin-bottom:25px;
+  }
+
+  .profile{
+    gap:25px;
+  }
+
+  .avatar{
+    width:130px;
+    height:130px;
+
+    font-size:48px;
+  }
+
+  .details h1{
+    font-size:32px;
+  }
+
+  .company{
+    font-size:19px;
+  }
+
+  .line{
+    margin-top:18px;
+  }
+
+  .actions{
+    gap:10px;
+
+    margin-top:30px;
+  }
+
+  .icon{
+    width:58px;
+    height:58px;
+
+    font-size:25px;
+  }
+
+  .action span{
+    font-size:13px;
+  }
+
+  .contact-panel{
+    margin-top:28px;
+  }
+
+  .contact{
+    padding:18px 12px;
+  }
+
+  .contact-title{
+    font-size:14px;
+  }
+
+  .contact-value{
+    font-size:13px;
+  }
+
+  .footer{
+    font-size:14px;
+
+    gap:10px;
   }
 }
+
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media(max-width:500px){
+
+  .profile{
+    gap:15px;
+  }
+
+  .avatar{
+    width:100px;
+    height:100px;
+
+    font-size:35px;
+  }
+
+  .details h1{
+    font-size:25px;
+  }
+
+  .company{
+    font-size:16px;
+  }
+
+  .actions{
+    grid-template-columns:
+      repeat(5,1fr);
+  }
+
+  .icon{
+    width:48px;
+    height:48px;
+
+    font-size:20px;
+  }
+
+  .action span{
+    font-size:11px;
+  }
+
+  .contact-title{
+    font-size:12px;
+  }
+
+  .contact-value{
+    font-size:11px;
+  }
+}
+
 </style>
 </head>
 
+
 <body>
 
-<main class="card">
+<div class="card">
 
-  <!-- HEADER -->
-  <section class="top">
+  <div class="content">
+
+
+    <!-- =====================
+         BRAND
+    ====================== -->
 
     <div class="brand">
-      🧱 BRICK BY BRICK
-    </div>
 
-    <div class="avatar">
-      SL
-    </div>
+      <div class="brick-logo">
 
-    <h1>Shamsudheen Latheef</h1>
+        <span class="b1"></span>
+        <span class="b2"></span>
+        <span class="b3"></span>
+        <span class="b4"></span>
+        <span class="b5"></span>
+        <span class="b6"></span>
+        <span class="b7"></span>
+        <span class="b8"></span>
 
-    <div class="company">
-      Poonawalla Fincorp
-    </div>
+      </div>
 
-  </section>
-
-
-  <!-- CONTENT -->
-  <section class="content">
-
-    <!-- CONTACT BUTTONS -->
-    <div class="buttons">
-
-      <a class="button primary"
-         href="tel:+919645741683">
-        <span class="icon">📞</span>
-        Call
-      </a>
-
-      <a class="button"
-         href="https://wa.me/919645741683"
-         target="_blank">
-        <span class="icon">💬</span>
-        WhatsApp
-      </a>
-
-      <a class="button"
-         href="mailto:go.easylife2026@gmail.com">
-        <span class="icon">✉️</span>
-        Email
-      </a>
-
-      <a class="button"
-         href="https://www.instagram.com/_go_easy_/"
-         target="_blank">
-        <span class="icon">📷</span>
-        Instagram
-      </a>
-
-      <a class="button full primary"
-         href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3AShamsudheen%20Latheef%0AORG%3APoonawalla%20Fincorp%0ATEL%3BTYPE%3DCELL%3A%2B919645741683%0AEMAIL%3Ago.easylife2026%40gmail.com%0AADR%3A%3A%3AThodupuzha%3A%3A%3A%0AEND%3AVCARD"
-         download="Shamsudheen-Latheef.vcf">
-        <span class="icon">👤</span>
-        Save Contact
-      </a>
+      BRICK BY BRICK
 
     </div>
 
 
-    <!-- CONTACT DETAILS -->
-    <div class="details">
+    <!-- =====================
+         PROFILE
+    ====================== -->
 
-      <div class="detail">
-        <div class="detail-icon">📞</div>
-        <div>
-          <span class="detail-label">Phone</span>
+    <div class="profile">
+
+      <div class="avatar">
+        SL
+      </div>
+
+      <div class="details">
+
+        <h1>
+          Shamsudheen<br>
+          Latheef
+        </h1>
+
+        <div class="company">
+          Poonawalla Fincorp
+        </div>
+
+        <div class="line"></div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =====================
+         ACTION BUTTONS
+    ====================== -->
+
+    <div class="actions">
+
+
+      <!-- CALL -->
+
+      <a
+        class="action"
+        href="tel:+919645741683"
+      >
+
+        <div class="icon">
+          <i class="fa-solid fa-phone"></i>
+        </div>
+
+        <span>Call</span>
+
+      </a>
+
+
+      <!-- WHATSAPP -->
+
+      <a
+        class="action"
+        href="https://wa.me/919645741683"
+        target="_blank"
+        rel="noopener"
+      >
+
+        <div class="icon">
+          <i class="fa-brands fa-whatsapp"></i>
+        </div>
+
+        <span>WhatsApp</span>
+
+      </a>
+
+
+      <!-- EMAIL -->
+
+      <a
+        class="action"
+        href="mailto:go.easylife2026@gmail.com"
+      >
+
+        <div class="icon">
+          <i class="fa-solid fa-envelope"></i>
+        </div>
+
+        <span>Email</span>
+
+      </a>
+
+
+      <!-- INSTAGRAM -->
+
+      <a
+        class="action"
+        href="https://www.instagram.com/_go_easy_/"
+        target="_blank"
+        rel="noopener"
+      >
+
+        <div class="icon">
+          <i class="fa-brands fa-instagram"></i>
+        </div>
+
+        <span>Instagram</span>
+
+      </a>
+
+
+      <!-- SAVE CONTACT -->
+
+      <a
+        class="action"
+        href="#save"
+        id="saveContact"
+      >
+
+        <div class="icon">
+          <i class="fa-solid fa-user-plus"></i>
+        </div>
+
+        <span>Save Contact</span>
+
+      </a>
+
+    </div>
+
+
+    <!-- =====================
+         CONTACT INFORMATION
+    ====================== -->
+
+    <div class="contact-panel">
+
+
+      <div class="contact">
+
+        <div class="contact-title">
+
+          <i class="fa-solid fa-phone"></i>
+          &nbsp; Phone
+
+        </div>
+
+        <div class="contact-value">
+
+          +91 9645741683
+
+        </div>
+
+      </div>
+
+
+      <div class="contact">
+
+        <div class="contact-title">
+
+          <i class="fa-brands fa-whatsapp"></i>
+          &nbsp; WhatsApp
+
+        </div>
+
+        <div class="contact-value">
+
+          +91 9645741683
+
+        </div>
+
+      </div>
+
+
+      <div class="contact">
+
+        <div class="contact-title">
+
+          <i class="fa-solid fa-envelope"></i>
+          &nbsp; Email
+
+        </div>
+
+        <div class="contact-value">
+
+          go.easylife2026@gmail.com
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <!-- =====================
+         FOOTER
+    ====================== -->
+
+    <div class="footer">
+
+      <span>
+        Brick by Brick
+      </span>
+
+      <span class="dot"></span>
+
+      <span>
+        Card #000001
+      </span>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     SAVE CONTACT SCRIPT
+========================= -->
+
+<script>
+
+document
+.getElementById("saveContact")
+.addEventListener("click", function(e){
+
+  e.preventDefault();
+
+
+  const vcard =
+`BEGIN:VCARD
+VERSION:3.0
+FN:Shamsudheen Latheef
+ORG:Poonawalla Fincorp
+TEL;TYPE=CELL:+919645741683
+EMAIL:go.easylife2026@gmail.com
+URL:https://www.instagram.com/_go_easy_/
+NOTE:Brick by Brick - Card #000001
+END:VCARD`;
+
+
+  const blob =
+    new Blob(
+      [vcard],
+      {type:"text/vcard"}
+    );
+
+
+  const url =
+    URL.createObjectURL(blob);
+
+
+  const link =
+    document.createElement("a");
+
+
+  link.href = url;
+
+  link.download =
+    "Shamsudheen-Latheef-Card-000001.vcf";
+
+
+  document
+    .body
+    .appendChild(link);
+
+
+  link.click();
+
+
+  document
+    .body
+    .removeChild(link);
+
+
+  URL.revokeObjectURL(url);
+
+});
+
+</script>
+
+</body>
+</html>
