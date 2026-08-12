@@ -3,34 +3,329 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Shamsudheen Latheef | Brick by Brick</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Arial,sans-serif;background:#f1f5f9;color:#0f172a;display:flex;justify-content:center;padding:24px 14px}.card{width:100%;max-width:430px;background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 15px 45px rgba(15,23,42,.12)}.top{background:#0b1f3a;color:#fff;text-align:center;padding:34px 22px 28px}.brand{font-size:13px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;opacity:.85;margin-bottom:24px}.avatar{width:86px;height:86px;margin:0 auto 16px;border-radius:50%;background:#fff;color:#0b1f3a;display:flex;align-items:center;justify-content:center;font-size:29px;font-weight:800}h1{margin:0;font-size:28px;line-height:1.2}.company{margin-top:8px;color:#dbeafe;font-size:16px}.content{padding:24px}.buttons{display:grid;gap:12px}.button{display:flex;align-items:center;justify-content:center;min-height:50px;border-radius:12px;text-decoration:none;font-weight:800;border:1px solid #e2e8f0;color:#0f172a;background:#f8fafc}.button.primary{background:#0b1f3a;color:#fff;border-color:#0b1f3a}.details{margin-top:24px;padding-top:20px;border-top:1px solid #e2e8f0}.detail{padding:9px 0;word-break:break-word}.label{font-size:12px;color:#64748b;margin-bottom:3px;text-transform:uppercase;letter-spacing:.7px}.value{font-size:15px}.value a{color:#0b1f3a;text-decoration:none}.footer{text-align:center;padding:18px;font-size:12px;color:#64748b;background:#f8fafc}
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --green-dark: #061b16;
+  --green: #0d3025;
+  --green-light: #164b3a;
+  --gold: #d6b45c;
+  --gold-light: #f0d98a;
+  --white: #ffffff;
+  --text-light: #e9eee9;
+  --muted: #b8c8c0;
+  --border: rgba(214,180,92,0.45);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at top right, #174c3a 0%, transparent 35%),
+    linear-gradient(145deg, #020b08, #09241b 55%, #03100c);
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  padding: 20px 12px;
+}
+
+.card {
+  width: 100%;
+  max-width: 520px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: rgba(5, 22, 17, 0.96);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.55),
+    0 0 35px rgba(214,180,92,0.08);
+}
+
+/* TOP */
+.top {
+  padding: 32px 22px 28px;
+  text-align: center;
+  background:
+    radial-gradient(circle at 80% 10%, rgba(214,180,92,0.14), transparent 35%),
+    linear-gradient(145deg, #071c16, #0c3024);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  color: var(--gold-light);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+}
+
+.avatar {
+  width: 115px;
+  height: 115px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--gold-light);
+  background: #0b2a20;
+  border: 3px solid var(--gold);
+  box-shadow:
+    0 0 0 7px rgba(214,180,92,0.08),
+    0 0 30px rgba(214,180,92,0.15);
+}
+
+h1 {
+  margin: 0;
+  font-size: 31px;
+  line-height: 1.15;
+  color: #fff;
+}
+
+.company {
+  margin-top: 10px;
+  font-size: 18px;
+  color: var(--gold-light);
+}
+
+/* CONTENT */
+.content {
+  padding: 25px 20px 30px;
+}
+
+/* BUTTONS */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.button {
+  min-height: 58px;
+  padding: 12px 10px;
+  border-radius: 16px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  background: #0d2c22;
+  border: 1px solid rgba(214,180,92,0.35);
+  transition: 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold);
+}
+
+.button.primary {
+  background: linear-gradient(135deg, #a98532, #e0c56d);
+  color: #08150f;
+  border: none;
+}
+
+.button.full {
+  grid-column: 1 / -1;
+}
+
+.icon {
+  font-size: 22px;
+}
+
+/* DETAILS */
+.details {
+  margin-top: 28px;
+  padding: 20px;
+  border-radius: 18px;
+  background: rgba(14,53,40,0.72);
+  border: 1px solid rgba(214,180,92,0.25);
+}
+
+.detail {
+  display: flex;
+  gap: 14px;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(214,180,92,0.15);
+}
+
+.detail:last-child {
+  border-bottom: none;
+}
+
+.detail-icon {
+  width: 32px;
+  flex-shrink: 0;
+  color: var(--gold-light);
+  font-size: 20px;
+}
+
+.detail-label {
+  display: block;
+  color: var(--gold-light);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.detail-value {
+  color: #fff;
+  font-size: 15px;
+  word-break: break-word;
+}
+
+/* THEME SWITCHER */
+.theme-section {
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(214,180,92,0.18);
+}
+
+.theme-title {
+  text-align: center;
+  color: var(--gold-light);
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.themes {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.theme-btn {
+  flex: 1;
+  padding: 11px 7px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: #10251f;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.theme-btn.active {
+  border-color: var(--gold);
+  color: var(--gold-light);
+  box-shadow: 0 0 12px rgba(214,180,92,0.15);
+}
+
+/* FOOTER */
+.footer {
+  padding: 18px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  border-top: 1px solid rgba(214,180,92,0.18);
+}
+
+.footer strong {
+  color: var(--gold-light);
+}
+
+/* RESPONSIVE */
+@media (max-width: 400px) {
+  h1 {
+    font-size: 27px;
+  }
+
+  .buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .button.full {
+    grid-column: auto;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <main class="card">
-<section class="top">
-<div class="brand">Brick by Brick</div>
-<div class="avatar">SL</div>
-<h1>Shamsudheen Latheef</h1>
-<div class="company">Poonawalla Fincorp</div>
-</section>
-<section class="content">
-<div class="buttons">
-<a class="button primary" href="tel:+918714816090">📞 Call</a>
-<a class="button" href="https://wa.me/918714816090" target="_blank" rel="noopener">💬 WhatsApp</a>
-<a class="button" href="mailto:shamsudeenlf@gmail.com">✉️ Email</a>
-<a class="button" href="https://www.instagram.com/shamzadam/" target="_blank" rel="noopener">📷 Instagram</a>
-<a class="button primary" href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3ALatheef%3BShamsudheen%3B%3B%3B%0AFN%3AShamsudheen%20Latheef%0AORG%3APoonawalla%20Fincorp%0ATEL%3BTYPE%3DCELL%3A%2B918714816090%0AEMAIL%3Ashamsudeenlf%40gmail.com%0AURL%3Ahttps%3A%2F%2Fwww.instagram.com%2Fshamzadam%2F%0AEND%3AVCARD" download="Shamsudheen-Latheef.vcf">👤 Save Contact</a>
-</div>
-<div class="details">
-<div class="detail"><div class="label">Phone</div><div class="value"><a href="tel:+918714816090">+91 87148 16090</a></div></div>
-<div class="detail"><div class="label">WhatsApp</div><div class="value"><a href="https://wa.me/918714816090" target="_blank" rel="noopener">+91 87148 16090</a></div></div>
-<div class="detail"><div class="label">Email</div><div class="value"><a href="mailto:shamsudeenlf@gmail.com">shamsudeenlf@gmail.com</a></div></div>
-</div>
-</section>
-<footer class="footer">Brick by Brick • Digital Business Card • Card #000001</footer>
-</main>
-</body>
-</html>
+
+  <!-- HEADER -->
+  <section class="top">
+
+    <div class="brand">
+      🧱 BRICK BY BRICK
+    </div>
+
+    <div class="avatar">
+      SL
+    </div>
+
+    <h1>Shamsudheen Latheef</h1>
+
+    <div class="company">
+      Poonawalla Fincorp
+    </div>
+
+  </section>
+
+
+  <!-- CONTENT -->
+  <section class="content">
+
+    <!-- CONTACT BUTTONS -->
+    <div class="buttons">
+
+      <a class="button primary"
+         href="tel:+919645741683">
+        <span class="icon">📞</span>
+        Call
+      </a>
+
+      <a class="button"
+         href="https://wa.me/919645741683"
+         target="_blank">
+        <span class="icon">💬</span>
+        WhatsApp
+      </a>
+
+      <a class="button"
+         href="mailto:go.easylife2026@gmail.com">
+        <span class="icon">✉️</span>
+        Email
+      </a>
+
+      <a class="button"
+         href="https://www.instagram.com/_go_easy_/"
+         target="_blank">
+        <span class="icon">📷</span>
+        Instagram
+      </a>
+
+      <a class="button full primary"
+         href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3AShamsudheen%20Latheef%0AORG%3APoonawalla%20Fincorp%0ATEL%3BTYPE%3DCELL%3A%2B919645741683%0AEMAIL%3Ago.easylife2026%40gmail.com%0AADR%3A%3A%3AThodupuzha%3A%3A%3A%0AEND%3AVCARD"
+         download="Shamsudheen-Latheef.vcf">
+        <span class="icon">👤</span>
+        Save Contact
+      </a>
+
+    </div>
+
+
+    <!-- CONTACT DETAILS -->
+    <div class="details">
+
+      <div class="detail">
+        <div class="detail-icon">📞</div>
+        <div>
+          <span class="detail-label">Phone</span>
