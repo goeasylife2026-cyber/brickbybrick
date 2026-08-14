@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dynamic QR Generator - GoEasyLife</title>
+<script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+<style>
+  :root{--bg:#0f1115;--card:#181b22;--border:#2a2f3a;--text:#e6e6e6;--muted:#9aa0aa;--accent:#7c5cff}
+  *{box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
+  body{margin:0;background:var(--bg);color:var(--text);display:flex;justify-content:center;padding:20px}
+  .app{width:100%;max-width:1100px;display:grid;grid-template-columns:380px 1fr;gap:24px}
+  @media(max-width:800px){.app{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px}
+  h1{margin:0 0 6px;font-size:28px} p.sub{color:var(--muted);margin:0 0 18px;font-size:14px}
+  label{display:block;font-size:13px;color:var(--muted);margin:14px 0 6px}
+  input,select{width:100%;padding:12px 14px;background:#0f1115;border:1px solid var(--border);border-radius:10px;color:var(--text);outline:none}
+  input:focus{border-color:var(--accent)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .qr-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+  #canvas{background:#fff;padding:16px;border-radius:16px}
+  .btn{width:100%;padding:13px;background:var(--accent);border:0;border-radius:10px;color:#fff;font-weight:600;cursor:pointer;margin-top:12px}
+  .btn.secondary{background:#242836}
+  .code-box{background:#0f1115;border:1px dashed var(--border);border-radius:10px;padding:12px;font-size:12px;word-break:break-all;margin-top:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="card">
+    <h1>Dynamic QR</h1>
+    <p class="sub">Create a QR that you can edit later without changing the QR image.</p>
+    
+    <label>Dynamic ID (this will be your short URL)</label>
+    <input id="qrId" value="000003" placeholder="e.g. 000003" />
+    
+    <label>Final Destination URL</label>
+    <input id="destUrl" value="https://instagram.com/___sike_" placeholder="https://your-link.com" />
+
+    <div class="row">
+      <div>
+        <label>Dot Color</label>
+        <input type="color" id="dotColor" value="#000000" />
+      </div>
+      <div>
+        <label>Background</label>
+        <input type="color" id="bgColor" value="#ffffff" />
+      </div>
+    </div>
+
+    <label>Style</label>
+    <select id="dotStyle">
+      <option value="rounded">Rounded</option>
+      <option value="dots">Dots</option>
+      <option value="classy">Classy</option>
+      <option value="square">Square</option>
+    </select>
+
+    <div class="code-box" id="shortUrlBox"></div>
+
+    <button class="btn" onclick="downloadQR()">Download QR PNG</button>
+    <button class="btn secondary" onclick="showRedirectCode()">Get Code for /c/ID/index.html</button>
+  </div>
+
+  <div class="card qr-wrap">
+    <div id="canvas"></div>
+    <p style="color:var(--muted);font-size:13px">This QR points to your GitHub short link. You can change destination anytime.</p>
+    <textarea id="redirectTemplate" style="width:100%;height:180px;background:#0f1115;color:#9aa0aa;border:1px solid var(--border);border-radius:10px;padding:10px;display:none"></textarea>
+  </div>
+</div>
+
+<script>
+const baseUrl = "https://goeasylife.github.io/brickbybrick/c/"; // CHANGE THIS TO YOUR REPO URL
+
+const qrCode = new QRCodeStyling({
+  width: 280, height: 280, type: "svg",
+  data: baseUrl + "000003",
+  dotsOptions: { color: "#000000", type: "rounded" },
+  backgroundOptions: { color: "#ffffff" },
+  imageOptions: { crossOrigin: "anonymous", margin: 5 }
+});
+qrCode.append(document.getElementById("canvas"));
+
+function updateQR(){
+  const id = document.getElementById("qrId").value.trim() || "000003";
+  const dotColor = document.getElementById("dotColor").value;
+  const bgColor = document.getElementById("bgColor").value;
+  const dotStyle = document.getElementById("dotStyle").value;
+  const fullShortUrl = baseUrl + id;
+  
+  document.getElementById("shortUrlBox").innerText = "QR Points to: " + fullShortUrl;
+  
+  qrCode.update({
+    data: fullShortUrl,
+    dotsOptions: { color: dotColor, type: dotStyle },
+    backgroundOptions: { color: bgColor }
+  });
+}
+
+function downloadQR(){ qrCode.download({ name: "dynamic-qr", extension: "png" }); }
+
+function showRedirectCode(){
+  const id = document.getElementById("qrId").value.trim() || "000003";
+  const dest = document.getElementById("destUrl").value.trim() || "https://google.com";
+  const html = `<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Redirecting...</title>
+<meta http-equiv="refresh" content="0; url=${dest}">
+<script>window.location.replace("${dest}")<\/script>
+</head><body>Redirecting to <a href="${dest}">${dest}</a></body></html>`;
+  const box = document.getElementById("redirectTemplate");
+  box.style.display="block";
+  box.value=html;
+  box.select();
+  alert("Now create folder: /c/"+id+"/ and create index.html inside it with this code. That makes it dynamic!");
+}
+
+document.querySelectorAll("input,select").forEach(el=>el.addEventListener("input", updateQR));
+updateQR();
+</script>
+</body>
+</html>
