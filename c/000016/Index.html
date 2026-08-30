@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>i Core Mobile Service Center - Google Review</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#f4f4f4;
+  padding:15px;
+}
+
+.container{
+  width:100%;
+  max-width:430px;
+  background:#fff;
+  padding:25px;
+  border-radius:20px;
+  box-shadow:0 8px 30px rgba(0,0,0,.12);
+  text-align:center;
+}
+
+.logo{
+  width:70px;
+  height:70px;
+  margin:auto;
+  border-radius:50%;
+  background:#111;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:24px;
+  font-weight:bold;
+}
+
+h1{
+  font-size:21px;
+  margin:14px 0 5px;
+  color:#111;
+}
+
+.sub{
+  color:#777;
+  font-size:14px;
+  margin-bottom:12px;
+}
+
+.stars{
+  font-size:27px;
+  margin:12px;
+}
+
+.language{
+  display:flex;
+  gap:7px;
+  margin-bottom:12px;
+}
+
+.language button{
+  flex:1;
+  margin:0;
+  padding:10px 5px;
+  font-size:13px;
+  background:#eee;
+  color:#333;
+}
+
+button{
+  width:100%;
+  border:0;
+  border-radius:11px;
+  padding:14px;
+  margin-top:10px;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:active{
+  transform:scale(.98);
+}
+
+.generate{
+  background:#111;
+  color:white;
+}
+
+.copy{
+  background:#e8f0fe;
+  color:#1967d2;
+}
+
+.google{
+  background:#4285f4;
+  color:white;
+}
+
+textarea{
+  width:100%;
+  min-height:170px;
+  resize:vertical;
+  border:1px solid #ddd;
+  border-radius:12px;
+  padding:13px;
+  font-size:15px;
+  line-height:1.5;
+  outline:none;
+}
+
+textarea:focus{
+  border-color:#4285f4;
+}
+
+.success{
+  display:none;
+  color:green;
+  font-size:13px;
+  margin-top:9px;
+  font-weight:bold;
+}
+
+.note{
+  margin-top:16px;
+  color:#777;
+  font-size:11px;
+  line-height:1.5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="logo">IC</div>
+
+  <h1>i Core Mobile Service Center</h1>
+
+  <div class="sub">Thodupuzha</div>
+
+  <div class="stars">⭐⭐⭐⭐⭐</div>
+
+  <!-- Language Selection -->
+  <div class="language">
+
+    <button onclick="setLanguage('english')">
+      English
+    </button>
+
+    <button onclick="setLanguage('malayalam')">
+      മലയാളം
+    </button>
+
+    <button onclick="setLanguage('manglish')">
+      Manglish
+    </button>
+
+  </div>
+
+  <!-- Generate -->
+  <button class="generate" onclick="generateReview()">
+    ✨ Generate Review
+  </button>
+
+  <br><br>
+
+  <!-- Review Box -->
+  <textarea
+    id="review"
+    placeholder="Generated review will appear here..."
+  ></textarea>
+
+  <!-- Copy -->
+  <button class="copy" onclick="copyReview()">
+    📋 Copy Review
+  </button>
+
+  <div class="success" id="success">
+    ✅ Review copied!
+  </div>
+
+  <!-- Google Review -->
+  <button class="google" onclick="openGoogle()">
+    ⭐ Open Google Review
+  </button>
+
+  <div class="note">
+    Please edit the draft so it accurately reflects your
+    own experience before posting your review.
+  </div>
+
+</div>
+
+
+<script>
+
+/* =========================================
+   CURRENT LANGUAGE
+========================================= */
+
+let currentLanguage = "english";
+
+
+/* =========================================
+   ENGLISH REVIEW PARTS
+========================================= */
+
+const englishStart = [
+
+  "Had a great experience at",
+
+  "Really happy with the service at",
+
+  "I had a very good experience at",
+
+  "Excellent service from",
+
+  "Very satisfied with the service at",
+
+  "Visited",
+
+  "My experience with",
+
+  "Really impressed with",
+
+  "Very happy with",
+
+  "Great experience with"
+
+];
+
+
+const englishMiddle = [
+
+  "i Core Mobile Service Center.",
+
+  "i Core Mobile Service Center in Thodupuzha.",
+
+  "the team at i Core Mobile Service Center.",
+
+  "the service team at i Core.",
+
+  "i Core Mobile Service Center, Thodupuzha."
+
+];
+
+
+const englishWork = [
+
+  "The staff were friendly and helpful.",
+
+  "The staff explained everything clearly.",
+
+  "The service was quick and professional.",
+
+  "They handled my phone carefully.",
+
+  "The work was done properly.",
+
+  "The team was very helpful.",
+
+  "The service was smooth and convenient.",
+
+  "They gave good support and guidance.",
+
+  "The service was professional and reliable.",
+
+  "The staff were polite and supportive."
+
+];
+
+
+const englishEnd = [
+
+  "Highly recommended!",
+
+  "Very good service. Recommended!",
+
+  "Happy with the service.",
+
+  "Will definitely recommend them.",
+
+  "Thank you for the excellent service!",
+
+  "Overall, a very good experience.",
+
+  "Good service and friendly staff.",
+
+  "Definitely recommended."
+
+];
+
+
+/* =========================================
+   MALAYALAM REVIEW PARTS
+========================================= */
+
+const malayalamStart = [
+
+  "i Core Mobile Service Center-ൽ നല്ല അനുഭവമായിരുന്നു.",
+
+  "Thodupuzha-യിലെ i Core Mobile Service Center-ൽ നിന്ന് വളരെ നല്ല service ലഭിച്ചു.",
+
+  "i Core-ൽ നിന്ന് നല്ല service കിട്ടി.",
+
+  "എനിക്ക് i Core Mobile Service Center-ൽ വളരെ നല്ല അനുഭവമായിരുന്നു.",
+
+  "മൊബൈൽ service ചെയ്യാൻ i Core-ൽ പോയി.",
+
+  "i Core Mobile Service Center-ലെ service വളരെ ഇഷ്ടപ്പെട്ടു.",
+
+  "i Core-ൽ നിന്ന് മികച്ച service ലഭിച്ചു.",
+
+  "മൊബൈൽ repair ചെയ്യാൻ i Core-ൽ പോയി, നല്ല experience ആയിരുന്നു."
+
+];
+
+
+const malayalamMiddle = [
+
+  "സ്റ്റാഫ് വളരെ friendly ആയിരുന്നു.",
+
+  "സ്റ്റാഫ് കാര്യങ്ങൾ വ്യക്തമായി പറഞ്ഞു തന്നു.",
+
+  "service വളരെ വേഗത്തിലും നല്ല രീതിയിലും ചെയ്തു.",
+
+  "എന്റെ phone നല്ല രീതിയിൽ പരിശോധിച്ചു.",
+
+  "ജോലി കൃത്യമായി ചെയ്തു തന്നു.",
+
+  "staff വളരെ helpful ആയിരുന്നു.",
+
+  "service വളരെ smooth ആയിരുന്നു.",
+
+  "സ്റ്റാഫിന്റെ support വളരെ നല്ലതായിരുന്നു.",
+
+  "service professional ആയി തോന്നി.",
+
+  "കാര്യങ്ങൾ വ്യക്തമായി explain ചെയ്തു തന്നു."
+
+];
+
+
+const malayalamEnd = [
+
+  "വളരെ നല്ല service. Recommend ചെയ്യുന്നു!",
+
+  "നല്ല service ആണ്. തീർച്ചയായും recommend ചെയ്യും.",
+
+  "Service-ൽ വളരെ satisfied ആണ്.",
+
+  "നന്ദി i Core!",
+
+  "മൊത്തത്തിൽ നല്ല experience ആയിരുന്നു.",
+
+  "മൊബൈൽ service ആവശ്യമുള്ളവർക്ക് recommend ചെയ്യാം.",
+
+  "വളരെ നല്ല service ലഭിച്ചു.",
+
+  "Definitely recommend ചെയ്യുന്നു."
+
+];
+
+
+/* =========================================
+   MANGLISH REVIEW PARTS
+========================================= */
+
+const manglishStart = [
+
+  "i Core Mobile Service Center-il nalla experience aayirunnu.",
+
+  "Thodupuzha i Core-il ninnum nalla service kitti.",
+
+  "i Core-il phone service cheyyan poyi.",
+
+  "Enikku i Core Mobile Service Center-il valare nalla experience aayirunnu.",
+
+  "i Core-le service valare ishtappettu.",
+
+  "i Core Mobile Service Center-il nalla service aanu kittiyathu.",
+
+  "Phone service cheyyan i Core-il poyi, experience nannayirunnu.",
+
+  "i Core-il ninnum excellent service kitti.",
+
+  "i Core Mobile Service Center-il nalla experience undayi."
+
+];
+
+
+const manglishMiddle = [
+
+  "Staff valare friendly aayirunnu.",
+
+  "Staff ellam clear ayi explain cheythu thannu.",
+
+  "Service quick um professional um aayirunnu.",
+
+  "Phone nalla reethiyil check cheythu.",
+
+  "Work correct ayi cheythu thannu.",
+
+  "Team valare helpful aayirunnu.",
+
+  "Service smooth aayirunnu.",
+
+  "Staff-inte support nannayirunnu.",
+
+  "Service professional aayirunnu.",
+
+  "Ellam clear ayi paranju thannu."
+
+];
+
+
+const manglishEnd = [
+
+  "Highly recommended!",
+
+  "Nalla service aanu, recommend cheyyunnu.",
+
+  "Service-il valare satisfied aanu.",
+
+  "Definitely recommend cheyyum.",
+
+  "Overall nalla experience aayirunnu.",
+
+  "Thank you i Core!",
+
+  "Mobile service vendavarkku recommend cheyyam.",
+
+  "Very good service aanu.",
+
+  "Definitely recommended."
+
+];
+
+
+/* =========================================
+   RANDOM ITEM
+========================================= */
+
+function randomItem(array){
+
+  return array[
+    Math.floor(Math.random() * array.length)
+  ];
+
+}
+
+
+/* =========================================
+   SET LANGUAGE
+========================================= */
+
+function setLanguage(language){
+
+  currentLanguage = language;
+
+  generateReview();
+
+}
+
+
+/* =========================================
+   GENERATE REVIEW
+========================================= */
+
+function generateReview(){
+
+  let text = "";
+
+
+  /* English */
+
+  if(currentLanguage === "english"){
+
+    text =
+      randomItem(englishStart) + " " +
+      randomItem(englishMiddle) + " " +
+      randomItem(englishWork) + " " +
+      randomItem(englishEnd);
+
+  }
+
+
+  /* Malayalam */
+
+  else if(currentLanguage === "malayalam"){
+
+    text =
+      randomItem(malayalamStart) + " " +
+      randomItem(malayalamMiddle) + " " +
+      randomItem(malayalamEnd);
+
+  }
+
+
+  /* Manglish */
+
+  else{
+
+    text =
+      randomItem(manglishStart) + " " +
+      randomItem(manglishMiddle) + " " +
+      randomItem(manglishEnd);
+
+  }
+
+
+  document.getElementById("review").value = text;
+
+  document.getElementById("success").style.display = "none";
+
+}
+
+
+/* =========================================
+   COPY REVIEW
+========================================= */
+
+function copyReview(){
+
+  const text =
+    document.getElementById("review").value.trim();
+
+
+  if(!text){
+
+    alert("Please generate or write a review first.");
+
+    return;
+
+  }
+
+
+  navigator.clipboard.writeText(text)
+
+  .then(function(){
+
+    document.getElementById("success")
+      .style.display = "block";
+
+
+    setTimeout(function(){
+
+      document.getElementById("success")
+        .style.display = "none";
+
+    },2500);
+
+  })
+
+
+  .catch(function(){
+
+    const box =
+      document.getElementById("review");
+
+    box.select();
+
+    document.execCommand("copy");
+
+    alert("Review copied!");
+
+  });
+
+}
+
+
+/* =========================================
+   DIRECT GOOGLE REVIEW LINK
+========================================= */
+
+function openGoogle(){
+
+  const googleReviewLink =
+    "https://search.google.com/local/writereview?placeid=ChIJ-Ru7U3HFBzsRRcq5VL1mHWM";
+
+
+  window.open(
+    googleReviewLink,
+    "_blank"
+  );
+
+}
+
+
+/* =========================================
+   FIRST REVIEW
+========================================= */
+
+generateReview();
+
+</script>
+
+</body>
+</html>
