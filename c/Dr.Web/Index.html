@@ -3,408 +3,286 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Doctor Mobile</title>
-
+<title>DR Mobile</title>
 <style>
 *{
+    margin:0;
+    padding:0;
     box-sizing:border-box;
-}
-
-body{
-    margin:0;
     font-family:Arial,sans-serif;
-    background:#f4f6f8;
-    color:#222;
 }
-
-header{
-    background:#111;
-    color:white;
-    text-align:center;
-    padding:28px 15px;
+body{
+    background:#fff;
+    color:#111;
 }
-
-header h1{
-    margin:0;
-    font-size:30px;
-}
-
-header p{
-    margin:8px 0 0;
-    color:#ccc;
-}
-
 .container{
-    max-width:600px;
+    max-width:500px;
     margin:auto;
-    padding:20px;
+    padding:25px 18px;
 }
-
+.header{
+    text-align:center;
+    padding:25px 0 35px;
+}
+.logo{
+    font-size:42px;
+    font-weight:800;
+    letter-spacing:-3px;
+}
+.shop-name{
+    font-size:16px;
+    color:#777;
+    margin-top:5px;
+}
+.subtitle{
+    margin-top:25px;
+    font-size:14px;
+    color:#888;
+}
 .options{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:15px;
 }
-
 .option{
-    background:white;
+    background:#fff;
+    border:1px solid #e5e5e5;
     border-radius:18px;
     padding:30px 15px;
     text-align:center;
-    box-shadow:0 5px 18px rgba(0,0,0,.1);
     cursor:pointer;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
     transition:.2s;
 }
-
-.option:active{
-    transform:scale(.97);
+.option:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 25px rgba(0,0,0,.1);
 }
-
-.option .icon{
-    font-size:45px;
+.icon{
+    font-size:32px;
+    margin-bottom:12px;
 }
-
-.option h2{
-    margin:12px 0 0;
-    font-size:19px;
+.option h3{
+    font-size:17px;
 }
-
 .section{
     display:none;
     margin-top:25px;
-    background:white;
-    padding:20px;
-    border-radius:18px;
-    box-shadow:0 5px 18px rgba(0,0,0,.1);
 }
-
-.section h2{
-    margin-top:0;
+.section.active{
+    display:block;
 }
-
-select{
+.back{
+    border:0;
+    background:none;
+    color:#777;
+    margin-bottom:18px;
+    cursor:pointer;
+    font-size:14px;
+}
+label{
+    display:block;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:8px;
+}
+input{
     width:100%;
-    padding:14px;
+    padding:15px;
     border:1px solid #ddd;
-    border-radius:10px;
-    font-size:16px;
-    background:white;
+    border-radius:12px;
+    outline:none;
+    font-size:15px;
+    background:#fff;
 }
-
+input:focus{
+    border-color:#111;
+}
 .result{
+    margin-top:20px;
+    padding:20px;
+    border:1px solid #e5e5e5;
+    border-radius:16px;
+    box-shadow:0 5px 18px rgba(0,0,0,.05);
     display:none;
-    margin-top:18px;
-    padding:18px;
-    border-radius:14px;
-    background:#f5f5f5;
 }
-
 .result h3{
-    margin-top:0;
+    margin-bottom:15px;
 }
-
-.info{
+.row{
     display:flex;
     justify-content:space-between;
-    padding:9px 0;
-    border-bottom:1px solid #ddd;
+    padding:10px 0;
+    border-bottom:1px solid #eee;
 }
-
-.buttons{
-    display:flex;
-    gap:10px;
+.btn-group{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
     margin-top:18px;
 }
-
-.btn{
-    flex:1;
-    padding:13px;
-    border-radius:10px;
+.whatsapp,.call{
+    display:block;
     text-align:center;
+    padding:14px;
+    border-radius:12px;
+    font-weight:600;
     text-decoration:none;
-    color:white;
-    font-weight:bold;
 }
-
-.call{
-    background:#1677ff;
-}
-
 .whatsapp{
-    background:#25d366;
+    background:#25D366;
+    color:#fff;
 }
-
-.back{
-    margin-top:15px;
-    width:100%;
-    padding:12px;
-    border:0;
-    border-radius:10px;
-    background:#222;
-    color:white;
-    cursor:pointer;
+.call{
+    background:#111;
+    color:#fff;
 }
-
-footer{
+.parts-message{
+    padding:20px;
+    border:1px solid #e5e5e5;
+    border-radius:16px;
     text-align:center;
-    padding:30px;
-    color:#777;
-    font-size:13px;
+    color:#666;
+}
+.contact-bar{
+    text-align:center;
+    margin-top:30px;
+    padding-top:20px;
+    border-top:1px solid #eee;
+}
+.contact-bar a{
+    color:#111;
+    font-weight:600;
+    text-decoration:none;
+    margin:0 10px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-    <h1>Doctor Mobile</h1>
-    <p>Mobile Display & Spare Parts</p>
-</header>
-
 <div class="container">
 
-    <!-- MAIN OPTIONS -->
-    <div class="options" id="mainOptions">
-
-        <div class="option" onclick="showSection('displaySection')">
-            <div class="icon">📱</div>
-            <h2>Display</h2>
-        </div>
-
-        <div class="option" onclick="showSection('partsSection')">
-            <div class="icon">🔧</div>
-            <h2>Spare Parts</h2>
-        </div>
-
+    <div class="header">
+        <div class="logo">DR</div>
+        <div class="shop-name">DR Mobile</div>
+        <div class="subtitle">Select a service</div>
     </div>
 
+    <div class="options" id="mainOptions">
+        <div class="option" onclick="showDisplay()">
+            <div class="icon">📱</div>
+            <h3>Display</h3>
+        </div>
+        <div class="option" onclick="showParts()">
+            <div class="icon">🔧</div>
+            <h3>Spare Parts</h3>
+        </div>
+    </div>
 
     <!-- DISPLAY SECTION -->
     <div class="section" id="displaySection">
+        <button class="back" onclick="goBack()">← Back</button>
 
-        <h2>📱 Select Display Model</h2>
+        <label>Select / Enter Phone Model</label>
+        <input list="models" id="model" placeholder="Example: Vivo Y20" oninput="checkModel()">
 
-        <select onchange="showDisplay()" id="displaySelect">
-            <option value="">Select Model</option>
+        <datalist id="models">
+            <option value="Vivo Y20">
+            <option value="Vivo Y31">
+            <option value="Oppo A31">
+            <option value="Oppo A15">
+            <option value="Oppo F19">
+            <option value="Realme C21Y">
+        </datalist>
 
-            <option value="Oppo A3s|750|2">Oppo A3s</option>
-            <option value="Oppo A31|800|4">Oppo A31</option>
-            <option value="Oppo A5s|750|2">Oppo A5s</option>
-            <option value="Oppo A57 New|800|4">Oppo A57 New</option>
-            <option value="Oppo A15|800|5">Oppo A15</option>
-            <option value="Oppo A1K|750|4">Oppo A1K</option>
-            <option value="Oppo F19|850|6">Oppo F19</option>
-            <option value="Realme C21Y|800|7">Realme C21Y</option>
-            <option value="Vivo Y31|850|5">Vivo Y31</option>
-            <option value="Vivo Y20|800|6">Vivo Y20</option>
-            <option value="Vivo Y90|750|3">Vivo Y90</option>
-
-        </select>
-
-        <div class="result" id="displayResult">
-
-            <h3 id="displayModel"></h3>
-
-            <div class="info">
-                <span>Price</span>
-                <strong>₹<span id="displayPrice"></span></strong>
+        <div class="result" id="result">
+            <h3 id="modelName"></h3>
+            <div class="row">
+                <span>Display</span>
+                <strong id="displayType"></strong>
             </div>
-
-            <div class="info">
+            <div class="row">
                 <span>Stock</span>
-                <strong id="displayStock"></strong>
+                <strong id="stock"></strong>
+            </div>
+            <div class="row">
+                <span>Rate</span>
+                <strong id="rate"></strong>
             </div>
 
-            <div class="buttons">
-
-                <a class="btn call"
-                   href="tel:+9179079 30656">
-                    ☎️ Call
-                </a>
-
-                <a class="btn whatsapp"
-                   id="displayWhatsApp"
-                   href="#"
-                   target="https://wa.me/9179079 30656">
-                    WhatsApp
-                </a>
-
+            <div class="btn-group">
+                <a id="whatsapp" class="whatsapp" target="_blank" href="#">WhatsApp</a>
+                <a id="callbtn" class="call" href="tel:+917907930656">Call Now</a>
             </div>
-
         </div>
-
-        <button class="back" onclick="goBack()">
-            ← Back
-        </button>
-
     </div>
 
-
-    <!-- SPARE PARTS SECTION -->
+    <!-- SPARE PARTS -->
     <div class="section" id="partsSection">
-
-        <h2>🔧 Select Spare Part</h2>
-
-        <select onchange="showPart()" id="partSelect">
-
-            <option value="">Select Spare Part</option>
-
-            <option value="Charging Port|300|5">
-                Charging Port
-            </option>
-
-            <option value="Battery|500|8">
-                Battery
-            </option>
-
-            <option value="Speaker|250|6">
-                Speaker
-            </option>
-
-            <option value="Mic|200|5">
-                Mic
-            </option>
-
-            <option value="Power Button|150|4">
-                Power Button
-            </option>
-
-            <option value="Volume Button|150|3">
-                Volume Button
-            </option>
-
-        </select>
-
-
-        <div class="result" id="partResult">
-
-            <h3 id="partName"></h3>
-
-            <div class="info">
-                <span>Price</span>
-                <strong>₹<span id="partPrice"></span></strong>
+        <button class="back" onclick="goBack()">← Back</button>
+        <div class="parts-message">
+            <h3>Spare Parts</h3>
+            <p style="margin-top:10px;">
+                Please enter the phone model and contact us on WhatsApp or Call.
+            </p>
+            <div class="btn-group">
+                <a class="whatsapp" target="_blank" href="https://wa.me/917907930656?text=Hi%20DR%20Mobile%2C%20I%20need%20spare%20parts.">WhatsApp Enquiry</a>
+                <a class="call" href="tel:+917907930656">Call Now</a>
             </div>
-
-            <div class="info">
-                <span>Stock</span>
-                <strong id="partStock"></strong>
-            </div>
-
-            <div class="buttons">
-
-                <a class="btn call"
-                   href="tel:+917907930656">
-                    ☎️ Call
-                </a>
-
-                <a class="btn whatsapp"
-                   id="partWhatsApp"
-                   href="#"
-                   target="https://wa.me/917907930656">
-                    WhatsApp
-                </a>
-
-            </div>
-
         </div>
+    </div>
 
-        <button class="back" onclick="goBack()">
-            ← Back
-        </button>
-
+    <div class="contact-bar">
+        <a href="tel:+917907930656">📞 7907930656</a> |
+        <a href="https://wa.me/917907930656" target="_blank">💬 WhatsApp</a>
     </div>
 
 </div>
 
-<footer>
-    © 2026 Doctor Mobile
-</footer>
-
-
 <script>
-
-function showSection(section){
-
-    document.getElementById("mainOptions").style.display="none";
-
-    document.getElementById("displaySection").style.display="none";
-    document.getElementById("partsSection").style.display="none";
-
-    document.getElementById(section).style.display="block";
-}
-
-
-function goBack(){
-
-    document.getElementById("displaySection").style.display="none";
-    document.getElementById("partsSection").style.display="none";
-
-    document.getElementById("mainOptions").style.display="grid";
-}
-
+const stockData = {
+    "vivo y20": { display: "Display Combo", stock: "Available", rate: "₹800" },
+    "vivo y31": { display: "Display Combo", stock: "Available", rate: "₹850" },
+    "oppo a31": { display: "Display Combo", stock: "Available", rate: "₹800" },
+    "oppo a15": { display: "Display Combo", stock: "Available", rate: "₹800" },
+    "oppo f19": { display: "Display Combo", stock: "Available", rate: "₹850" },
+    "realme c21y": { display: "Display Combo", stock: "Available", rate: "₹800" }
+};
 
 function showDisplay(){
-
-    let value=document.getElementById("displaySelect").value;
-
-    if(!value){
-        document.getElementById("displayResult").style.display="none";
-        return;
-    }
-
-    let data=value.split("|");
-
-    let model=data[0];
-    let price=data[1];
-    let stock=data[2];
-
-    document.getElementById("displayModel").innerText=model;
-    document.getElementById("displayPrice").innerText=price;
-    document.getElementById("displayStock").innerText=stock+" Available";
-
-    let message=
-        "Hello Doctor Mobile, I need "+model+
-        " display. Price: ₹"+price+
-        ". Stock: "+stock;
-
-    document.getElementById("displayWhatsApp").href=
-        "https://wa.me/919847864143?text="+encodeURIComponent(message);
-
-    document.getElementById("displayResult").style.display="block";
+    document.getElementById("mainOptions").style.display="none";
+    document.getElementById("displaySection").classList.add("active");
 }
-
-
-function showPart(){
-
-    let value=document.getElementById("partSelect").value;
-
-    if(!value){
-        document.getElementById("partResult").style.display="none";
-        return;
-    }
-
-    let data=value.split("|");
-
-    let part=data[0];
-    let price=data[1];
-    let stock=data[2];
-
-    document.getElementById("partName").innerText=part;
-    document.getElementById("partPrice").innerText=price;
-    document.getElementById("partStock").innerText=stock+" Available";
-
-    let message=
-        "Hello Doctor Mobile, I need "+part+
-        ". Price: ₹"+price+
-        ". Stock: "+stock;
-
-    document.getElementById("partWhatsApp").href=
-        "https://wa.me/919847864143?text="+encodeURIComponent(message);
-
-    document.getElementById("partResult").style.display="block";
+function showParts(){
+    document.getElementById("mainOptions").style.display="none";
+    document.getElementById("partsSection").classList.add("active");
 }
+function goBack(){
+    document.getElementById("mainOptions").style.display="grid";
+    document.getElementById("displaySection").classList.remove("active");
+    document.getElementById("partsSection").classList.remove("active");
+}
+function checkModel(){
+    let inputRaw = document.getElementById("model").value.trim();
+    let input = inputRaw.toLowerCase();
+    let result = document.getElementById("result");
 
+    if(stockData[input]){
+        let data = stockData[input];
+        document.getElementById("modelName").innerText = inputRaw.toUpperCase();
+        document.getElementById("displayType").innerText = data.display;
+        document.getElementById("stock").innerText = data.stock;
+        document.getElementById("rate").innerText = data.rate;
+
+        let message = `Hi DR Mobile,\n\nI need display for: ${inputRaw.toUpperCase()}\nDisplay: ${data.display}\nRate: ${data.rate}\nStock: ${data.stock}`;
+
+        document.getElementById("whatsapp").href = "https://wa.me/917907930656?text=" + encodeURIComponent(message);
+        result.style.display="block";
+    } else {
+        result.style.display="none";
+    }
+}
 </script>
 
 </body>
