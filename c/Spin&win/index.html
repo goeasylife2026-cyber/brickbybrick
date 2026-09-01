@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Mobiles - Spin & Win</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#111,#292929);
+    color:#fff;
+    min-height:100vh;
+    text-align:center;
+}
+
+.container{
+    width:100%;
+    max-width:520px;
+    margin:auto;
+    padding:25px 15px 50px;
+}
+
+.logo{
+    width:85px;
+    height:85px;
+    border-radius:50%;
+    background:#fff;
+    color:#111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 15px;
+    font-size:24px;
+    font-weight:bold;
+    box-shadow:0 5px 25px rgba(255,255,255,.2);
+}
+
+h1{
+    font-size:32px;
+    margin-bottom:5px;
+}
+
+.subtitle{
+    color:#bbb;
+    margin-bottom:25px;
+}
+
+/* CUSTOMER NAME */
+
+.name-box{
+    background:#1c1c1c;
+    border:1px solid #444;
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.name-box h2{
+    font-size:20px;
+    margin-bottom:12px;
+}
+
+.name-input{
+    width:100%;
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #555;
+    background:#292929;
+    color:#fff;
+    font-size:16px;
+    outline:none;
+}
+
+.name-input:focus{
+    border-color:#25d366;
+}
+
+.name-input::placeholder{
+    color:#999;
+}
+
+/* RULE BOX */
+
+.rules{
+    background:#1c1c1c;
+    border:1px solid #444;
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.rules h2{
+    margin-bottom:18px;
+    font-size:22px;
+}
+
+.rule{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:#292929;
+    padding:13px;
+    border-radius:12px;
+    margin-bottom:12px;
+    text-align:left;
+}
+
+.number{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:#fff;
+    color:#111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    flex-shrink:0;
+}
+
+.rule-text{
+    flex:1;
+}
+
+.rule-text strong{
+    display:block;
+    margin-bottom:3px;
+}
+
+.rule-text small{
+    color:#aaa;
+}
+
+.action-btn{
+    border:0;
+    padding:9px 13px;
+    border-radius:8px;
+    background:#fff;
+    color:#111;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.action-btn.done{
+    background:#25d366;
+    color:#fff;
+}
+
+.complete-btn{
+    width:100%;
+    padding:15px;
+    border:0;
+    border-radius:12px;
+    background:#555;
+    color:#aaa;
+    font-size:16px;
+    font-weight:bold;
+    cursor:not-allowed;
+}
+
+.complete-btn.active{
+    background:#25d366;
+    color:#fff;
+    cursor:pointer;
+}
+
+/* WHEEL */
+
+.wheel-section{
+    margin-top:25px;
+    background:#1c1c1c;
+    border:1px solid #444;
+    border-radius:18px;
+    padding:25px 15px;
+}
+
+.wheel-title{
+    font-size:24px;
+    margin-bottom:5px;
+}
+
+.wheel-info{
+    color:#aaa;
+    margin-bottom:20px;
+}
+
+.wheel-wrapper{
+    position:relative;
+    width:310px;
+    max-width:90vw;
+    height:310px;
+    margin:20px auto;
+}
+
+#wheel{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    border:8px solid #fff;
+    transition:transform 5s cubic-bezier(.17,.67,.12,.99);
+    box-shadow:0 0 25px rgba(255,255,255,.15);
+}
+
+.pointer{
+    position:absolute;
+    top:-5px;
+    left:50%;
+    transform:translateX(-50%);
+    width:0;
+    height:0;
+    border-left:15px solid transparent;
+    border-right:15px solid transparent;
+    border-top:32px solid #ff3b30;
+    z-index:5;
+    filter:drop-shadow(0 2px 3px #000);
+}
+
+.spin-btn{
+    width:100%;
+    max-width:310px;
+    padding:16px;
+    border:0;
+    border-radius:12px;
+    background:#fff;
+    color:#111;
+    font-size:19px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.spin-btn:disabled{
+    background:#555;
+    color:#999;
+    cursor:not-allowed;
+}
+
+/* RESULT */
+
+.result{
+    display:none;
+    margin-top:20px;
+    padding:20px;
+    border-radius:15px;
+    background:#252525;
+    border:1px solid #555;
+}
+
+.result h2{
+    font-size:25px;
+    margin-bottom:8px;
+}
+
+.customer-result{
+    color:#bbb;
+    margin-bottom:5px;
+}
+
+.reward{
+    font-size:30px;
+    font-weight:bold;
+    margin:10px 0;
+}
+
+.claim-btn{
+    display:inline-block;
+    text-decoration:none;
+    background:#25d366;
+    color:#fff;
+    padding:13px 20px;
+    border-radius:10px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+/* WHATSAPP FLOAT */
+
+.whatsapp{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:#25d366;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    color:white;
+    font-size:28px;
+    box-shadow:0 5px 20px rgba(0,0,0,.4);
+    z-index:20;
+}
+
+.footer{
+    margin-top:30px;
+    color:#777;
+    font-size:13px;
+}
+
+@media(max-width:400px){
+
+    h1{
+        font-size:27px;
+    }
+
+    .wheel-wrapper{
+        width:280px;
+        height:280px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">AM</div>
+
+    <h1>Atlas Mobiles</h1>
+
+    <p class="subtitle">
+        🎁 Complete 3 Steps & Spin to Win!
+    </p>
+
+
+    <!-- CUSTOMER NAME -->
+
+    <div class="name-box">
+
+        <h2>👤 Enter Your Name</h2>
+
+        <input
+            type="text"
+            id="customerName"
+            class="name-input"
+            placeholder="Enter your name"
+            maxlength="50"
+            autocomplete="name"
+        >
+
+    </div>
+
+
+    <!-- RULES -->
+
+    <div class="rules">
+
+        <h2>📋 Complete These 3 Rules</h2>
+
+
+        <!-- RULE 1 -->
+
+        <div class="rule">
+
+            <div class="number">1</div>
+
+            <div class="rule-text">
+
+                <strong>Follow our Instagram</strong>
+
+                <small>
+                    Follow Atlas Mobiles
+                </small>
+
+            </div>
+
+            <button
+                class="action-btn"
+                id="instagramBtn"
+                onclick="openInstagram()">
+
+                Follow
+
+            </button>
+
+        </div>
+
+
+        <!-- RULE 2 -->
+
+        <div class="rule">
+
+            <div class="number">2</div>
+
+            <div class="rule-text">
+
+                <strong>Give us a Google Review</strong>
+
+                <small>
+                    Share your experience
+                </small>
+
+            </div>
+
+            <button
+                class="action-btn"
+                id="reviewBtn"
+                onclick="openReview()">
+
+                Review
+
+            </button>
+
+        </div>
+
+
+        <!-- RULE 3 -->
+
+        <div class="rule">
+
+            <div class="number">3</div>
+
+            <div class="rule-text">
+
+                <strong>Send Screenshot on WhatsApp</strong>
+
+                <small>
+                    Send proof to Atlas Mobiles
+                </small>
+
+            </div>
+
+            <button
+                class="action-btn"
+                id="whatsappBtn"
+                onclick="openWhatsApp()">
+
+                WhatsApp
+
+            </button>
+
+        </div>
+
+
+        <br>
+
+
+        <button
+            id="completeBtn"
+            class="complete-btn"
+            onclick="activateWheel()">
+
+            🔒 Complete All 3 Steps
+
+        </button>
+
+    </div>
+
+
+    <!-- SPIN WHEEL -->
+
+    <div class="wheel-section">
+
+        <div class="wheel-title">
+            🎡 Spin & Win
+        </div>
+
+        <p class="wheel-info">
+            Complete all 3 steps to unlock the wheel.
+        </p>
+
+
+        <div class="wheel-wrapper">
+
+            <div class="pointer"></div>
+
+            <canvas
+                id="wheel"
+                width="310"
+                height="310">
+            </canvas>
+
+        </div>
+
+
+        <button
+            id="spinBtn"
+            class="spin-btn"
+            disabled
+            onclick="spinWheel()">
+
+            🔒 Spin the Wheel
+
+        </button>
+
+
+        <!-- RESULT -->
+
+        <div
+            id="result"
+            class="result">
+
+            <h2>
+                🎉 Congratulations!
+            </h2>
+
+            <p class="customer-result">
+                Congratulations,
+                <strong id="resultName"></strong>!
+            </p>
+
+            <p>
+                You won:
+            </p>
+
+            <div
+                id="reward"
+                class="reward">
+            </div>
+
+            <p>
+                Show this result to Atlas Mobiles
+                to claim your reward.
+            </p>
+
+            <a
+                id="claimBtn"
+                class="claim-btn"
+                href="#"
+                target="_blank">
+
+                📲 Claim on WhatsApp
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+
+        © 2026 Atlas Mobiles. All Rights Reserved.
+
+    </div>
+
+</div>
+
+
+<!-- FLOATING WHATSAPP -->
+
+<a
+    class="whatsapp"
+    href="https://wa.me/919446867241"
+    target="_blank"
+    aria-label="WhatsApp">
+
+    ☎
+
+</a>
+
+
+<script>
+
+/* =========================
+   YOUR LINKS
+========================= */
+
+const instagramURL =
+"https://www.instagram.com/atlas_mobiles_?igsi=a2I0YzJ0Z2l5ZjA4";
+
+const reviewURL =
+"https://search.google.com/local/writereview?placeid=ChIJr-PxuQzEBzsR6NG_xAS2TqU";
+
+const whatsappNumber =
+"919446867241";
+
+
+/* =========================
+   CUSTOMER NAME
+========================= */
+
+let customerName = "";
+
+
+/* =========================
+   STEP STATUS
+========================= */
+
+let instagramDone = false;
+let reviewDone = false;
+let whatsappDone = false;
+
+
+/* =========================
+   OPEN INSTAGRAM
+========================= */
+
+function openInstagram(){
+
+    window.open(
+        instagramURL,
+        "_blank"
+    );
+
+    instagramDone = true;
+
+    document
+    .getElementById("instagramBtn")
+    .classList.add("done");
+
+    document
+    .getElementById("instagramBtn")
+    .innerHTML = "✓ Done";
+
+    checkSteps();
+}
+
+
+/* =========================
+   OPEN GOOGLE REVIEW
+========================= */
+
+function openReview(){
+
+    window.open(
+        reviewURL,
+        "_blank"
+    );
+
+    reviewDone = true;
+
+    document
+    .getElementById("reviewBtn")
+    .classList.add("done");
+
+    document
+    .getElementById("reviewBtn")
+    .innerHTML = "✓ Done";
+
+    checkSteps();
+}
+
+
+/* =========================
+   OPEN WHATSAPP
+========================= */
+
+function openWhatsApp(){
+
+    const nameInput =
+    document
+    .getElementById("customerName")
+    .value
+    .trim();
+
+    if(nameInput === ""){
+
+        alert(
+            "Please enter your name first."
+        );
+
+        document
+        .getElementById("customerName")
+        .focus();
+
+        return;
+    }
+
+    customerName = nameInput;
+
+    const message =
+    "Hello Atlas Mobiles 👋\n\n" +
+    "My name is: " +
+    customerName +
+    "\n\n" +
+    "I have completed the Instagram follow " +
+    "and Google Review.\n\n" +
+    "I am sending my screenshot for " +
+    "Spin & Win verification.";
+
+    const url =
+    "https://wa.me/" +
+    whatsappNumber +
+    "?text=" +
+    encodeURIComponent(message);
+
+    window.open(
+        url,
+        "_blank"
+    );
+
+    whatsappDone = true;
+
+    document
+    .getElementById("whatsappBtn")
+    .classList.add("done");
+
+    document
+    .getElementById("whatsappBtn")
+    .innerHTML = "✓ Sent";
+
+    checkSteps();
+}
+
+
+/* =========================
+   CHECK ALL STEPS
+========================= */
+
+function checkSteps(){
+
+    const button =
+    document.getElementById("completeBtn");
+
+    const name =
+    document
+    .getElementById("customerName")
+    .value
+    .trim();
+
+
+    if(
+        name !== "" &&
+        instagramDone &&
+        reviewDone &&
+        whatsappDone
+    ){
+
+        button.classList.add("active");
+
+        button.innerHTML =
+        "✅ All 3 Steps Completed – Unlock Spin";
+
+    }
+    else{
+
+        button.classList.remove("active");
+
+        button.innerHTML =
+        "🔒 Complete All 3 Steps";
+
+    }
+
+}
+
+
+/* =========================
+   NAME INPUT CHECK
+========================= */
+
+document
+.getElementById("customerName")
+.addEventListener(
+    "input",
+    function(){
+
+        customerName =
+        this.value.trim();
+
+        checkSteps();
+
+    }
+);
+
+
+/* =========================
+   ACTIVATE WHEEL
+========================= */
+
+function activateWheel(){
+
+    const name =
+    document
+    .getElementById("customerName")
+    .value
+    .trim();
+
+
+    if(name === ""){
+
+        alert(
+            "Please enter your name first."
+        );
+
+        document
+        .getElementById("customerName")
+        .focus();
+
+        return;
+    }
+
+
+    if(
+        !instagramDone ||
+        !reviewDone ||
+        !whatsappDone
+    ){
+
+        alert(
+            "Please complete all 3 steps first."
+        );
+
+        return;
+    }
+
+
+    customerName = name;
+
+
+    document
+    .getElementById("spinBtn")
+    .disabled = false;
+
+
+    document
+    .getElementById("spinBtn")
+    .innerHTML =
+    "🎡 SPIN NOW!";
+
+
+    document
+    .getElementById("completeBtn")
+    .innerHTML =
+    "✅ Spin Unlocked!";
+
+
+    document
+    .getElementById("spinBtn")
+    .scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+
+}
+
+
+/* =========================
+   WHEEL
+========================= */
+
+const canvas =
+document.getElementById("wheel");
+
+const ctx =
+canvas.getContext("2d");
+
+
+const rewards = [
+
+    "₹50 OFF",
+    "10% OFF",
+    "FREE TEMPERED GLASS",
+    "₹100 OFF",
+    "BETTER LUCK NEXT TIME",
+    "₹75 OFF",
+    "FREE MOBILE CLEANING",
+    "₹150 OFF"
+
+];
+
+
+const colors = [
+
+    "#ff595e",
+    "#ffca3a",
+    "#8ac926",
+    "#1982c4",
+    "#6a4c93",
+    "#f72585",
+    "#4cc9f0",
+    "#fb8500"
+
+];
+
+
+const center = 155;
+
+const radius = 145;
+
+const slice =
+(Math.PI * 2) /
+rewards.length;
+
+
+/* =========================
+   DRAW WHEEL
+========================= */
+
+function drawWheel(){
+
+    ctx.clearRect(
+        0,
+        0,
+        310,
+        310
+    );
+
+
+    for(
+        let i = 0;
+        i < rewards.length;
+        i++
+    ){
+
+        const start =
+        i * slice -
+        Math.PI / 2;
+
+        const end =
+        start + slice;
+
+
+        /* SLICE */
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            center,
+            center
+        );
+
+        ctx.arc(
+            center,
+            center,
+            radius,
+            start,
+            end
+        );
+
+        ctx.closePath();
+
+        ctx.fillStyle =
+        colors[i];
+
+        ctx.fill();
+
+
+        ctx.strokeStyle =
+        "#ffffff";
+
+        ctx.lineWidth = 2;
+
+        ctx.stroke();
+
+
+        /* TEXT */
+
+        ctx.save();
+
+        ctx.translate(
+            center,
+            center
+        );
+
+        ctx.rotate(
+            start + slice / 2
+        );
+
+        ctx.textAlign =
+        "right";
+
+        ctx.fillStyle =
+        "#ffffff";
+
+        ctx.font =
+        "bold 13px Arial";
+
+        ctx.fillText(
+            rewards[i],
+            radius - 10,
+            5
+        );
+
+        ctx.restore();
+
+    }
+
+}
+
+
+drawWheel();
+
+
+/* =========================
+   SPIN
+========================= */
+
+let spinning = false;
+
+let alreadySpun = false;
+
+let currentRotation = 0;
+
+
+function spinWheel(){
+
+    if(spinning)
+        return;
+
+
+    if(alreadySpun){
+
+        alert(
+            "You have already used your spin."
+        );
+
+        return;
+    }
+
+
+    const name =
+    document
+    .getElementById("customerName")
+    .value
+    .trim();
+
+
+    if(name === ""){
+
+        alert(
+            "Please enter your name."
+        );
+
+        return;
+    }
+
+
+    if(
+        !instagramDone ||
+        !reviewDone ||
+        !whatsappDone
+    ){
+
+        alert(
+            "Please complete all 3 steps first."
+        );
+
+        return;
+    }
+
+
+    customerName = name;
+
+    spinning = true;
+
+
+    document
+    .getElementById("spinBtn")
+    .disabled = true;
+
+
+    /*
+       RANDOM WINNING SEGMENT
+    */
+
+    const winningIndex =
+    Math.floor(
+        Math.random() *
+        rewards.length
+    );
+
+
+    /*
+       CALCULATE ROTATION
+    */
+
+    const segmentAngle =
+    360 / rewards.length;
+
+
+    const targetAngle =
+    360 -
+    (
+        winningIndex *
+        segmentAngle +
+        segmentAngle / 2
+    );
+
+
+    const extraSpins =
+    360 * 6;
+
+
+    currentRotation +=
+    extraSpins +
+    targetAngle;
+
+
+    canvas.style.transform =
+    "rotate(" +
+    currentRotation +
+    "deg)";
+
+
+    setTimeout(
+        function(){
+
+            showResult(
+                winningIndex
+            );
+
+            spinning = false;
+
+            alreadySpun = true;
+
+        },
+        5200
+    );
+
+}
+
+
+/* =========================
+   SHOW RESULT
+========================= */
+
+function showResult(index){
+
+    const reward =
+    rewards[index];
+
+
+    document
+    .getElementById("resultName")
+    .textContent =
+    customerName;
+
+
+    document
+    .getElementById("reward")
+    .textContent =
+    reward;
+
+
+    document
+    .getElementById("result")
+    .style.display =
+    "block";
+
+
+    /*
+       WHATSAPP CLAIM MESSAGE
+    */
+
+    const message =
+    "Hello Atlas Mobiles 👋\n\n" +
+
+    "Customer Name: " +
+    customerName +
+    "\n\n" +
+
+    "🎡 Spin & Win Result\n" +
+
+    "🎁 Reward: " +
+    reward +
+    "\n\n" +
+
+    "I have completed the required steps.\n" +
+
+    "Please verify and confirm my reward.";
+
+
+    const claimURL =
+    "https://wa.me/" +
+    whatsappNumber +
+    "?text=" +
+    encodeURIComponent(message);
+
+
+    document
+    .getElementById("claimBtn")
+    .href =
+    claimURL;
+
+
+    document
+    .getElementById("result")
+    .scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+
+}
+
+</script>
+
+</body>
+</html>
