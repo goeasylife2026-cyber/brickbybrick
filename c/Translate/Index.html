@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Malayalam Voice Translator</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #f4f4f4;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    background: white;
+    padding: 22px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+h1 {
+    text-align: center;
+    margin: 0 0 8px;
+    font-size: 25px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 130px;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    padding: 15px;
+    font-size: 17px;
+    outline: none;
+    resize: vertical;
+}
+
+textarea:focus {
+    border-color: #111;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+button {
+    border: none;
+    border-radius: 13px;
+    padding: 15px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.voice-btn {
+    flex: 1;
+    background: #111;
+    color: white;
+}
+
+.translate-btn {
+    flex: 1;
+    background: #333;
+    color: white;
+}
+
+.copy-btn {
+    width: 100%;
+    background: #e9e9e9;
+    color: #111;
+    margin-top: 12px;
+}
+
+.voice-btn.listening {
+    background: #d00000;
+}
+
+.status {
+    text-align: center;
+    min-height: 24px;
+    margin: 10px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.output {
+    min-height: 130px;
+    background: #f7f7f7;
+    border-radius: 14px;
+    padding: 15px;
+    font-size: 17px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.error {
+    color: #d00000;
+}
+
+.success {
+    color: #087f23;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🎤 Malayalam Translator</h1>
+
+    <div class="subtitle">
+        മലയാളത്തിൽ സംസാരിക്കൂ → English
+    </div>
+
+    <label>മലയാളം</label>
+
+    <textarea
+        id="inputText"
+        placeholder="🎤 Voice button അമർത്തി മലയാളത്തിൽ സംസാരിക്കൂ..."
+    ></textarea>
+
+    <div class="buttons">
+
+        <button
+            id="voiceButton"
+            class="voice-btn"
+            onclick="startVoice()">
+            🎤 സംസാരിക്കുക
+        </button>
+
+        <button
+            class="translate-btn"
+            onclick="translateText()">
+            Translate
+        </button>
+
+    </div>
+
+    <div id="status" class="status"></div>
+
+    <label>English</label>
+
+    <div id="outputText" class="output">
+        English translation ഇവിടെ കാണും...
+    </div>
+
+    <button
+        class="copy-btn"
+        onclick="copyResult()">
+        📋 Copy Result
+    </button>
+
+</div>
+
+
+<script>
+
+let recognition = null;
+let listening = false;
+
+
+/* =====================================
+   CHECK VOICE SUPPORT
+===================================== */
+
+function getSpeechRecognition() {
+
+    return window.SpeechRecognition ||
+           window.webkitSpeechRecognition ||
+           null;
+}
+
+
+/* =====================================
+   VOICE BUTTON
+===================================== */
+
+function startVoice() {
+
+    const SpeechRecognition =
+        getSpeechRecognition();
+
+    const status =
+        document.getElementById("status");
+
+    const button =
+        document.getElementById("voiceButton");
+
+
+    // Browser support check
+    if (!SpeechRecognition) {
+
+        status.className = "status error";
+
+        status.innerHTML =
+            "❌ Voice recognition support ഇല്ല.<br>" +
+            "Android Chrome ഉപയോഗിച്ച് ശ്രമിക്കൂ.";
+
+        return;
+    }
+
+
+    // Stop if already listening
+    if (listening) {
+
+        if (recognition) {
+            recognition.stop();
+        }
+
+        return;
+    }
+
+
+    recognition = new SpeechRecognition();
+
+
+    /*
+       Malayalam India
+    */
+    recognition.lang = "ml-IN";
+
+
+    /*
+       Only one sentence/session
+    */
+    recognition.continuous = false;
+
+
+    /*
+       Show final result
+    */
+    recognition.interimResults = false;
+
+
+    recognition.maxAlternatives = 1;
+
+
+    /* =================================
+       START
+    ================================= */
+
+    recognition.onstart = function() {
+
+        listening = true;
+
+        button.classList.add("listening");
+
+        button.innerHTML =
+            "🔴 കേൾക്കുന്നു...";
+
+        status.className = "status";
+
+        status.innerText =
+            "മലയാളത്തിൽ സംസാരിക്കൂ...";
+    };
+
+
+    /* =================================
+       RESULT
+    ================================= */
+
+    recognition.onresult = function(event) {
+
+        if (
+            event.results &&
+            event.results.length > 0
+        ) {
+
+            const result =
+                event.results[0][0];
+
+            const text =
+                result.transcript;
+
+
+            document.getElementById("inputText")
+                .value = text;
+
+
+            status.className =
+                "status success";
+
+            status.innerText =
+                "✓ Voice text ലഭിച്ചു";
+
+
+            /*
+              Automatically translate
+            */
+            translateText();
+        }
+    };
+
+
+    /* =================================
+       ERROR
+    ================================= */
+
+    recognition.onerror = function(event) {
+
+        listening = false;
+
+        button.classList.remove("listening");
+
+        button.innerHTML =
+            "🎤 സംസാരിക്കുക";
+
+
+        let message =
+            "Voice recognition error.";
+
+
+        if (event.error === "not-allowed") {
+
+            message =
+                "❌ Microphone permission അനുവദിച്ചിട്ടില്ല.";
+
+        }
+
+        else if (event.error === "audio-capture") {
+
+            message =
+                "❌ Microphone കണ്ടെത്താൻ കഴിഞ്ഞില്ല.";
+
+        }
+
+        else if (event.error === "no-speech") {
+
+            message =
+                "❌ ശബ്ദം കേൾക്കാനായില്ല. വീണ്ടും ശ്രമിക്കൂ.";
+
+        }
+
+        else if (event.error === "network") {
+
+            message =
+                "❌ Internet connection പരിശോധിക്കൂ.";
+
+        }
+
+        else if (event.error === "aborted") {
+
+            message =
+                "Voice stopped.";
+        }
+
+
+        status.className =
+            "status error";
+
+        status.innerText =
+            message;
+    };
+
+
+    /* =================================
+       END
+    ================================= */
+
+    recognition.onend = function() {
+
+        listening = false;
+
+        button.classList.remove("listening");
+
+        button.innerHTML =
+            "🎤 സംസാരിക്കുക";
+    };
+
+
+    /* =================================
+       START RECOGNITION
+    ================================= */
+
+    try {
+
+        recognition.start();
+
+    } catch (error) {
+
+        listening = false;
+
+        button.classList.remove("listening");
+
+        button.innerHTML =
+            "🎤 സംസാരിക്കുക";
+
+        status.className =
+            "status error";
+
+        status.innerText =
+            "Voice start ചെയ്യാൻ കഴിഞ്ഞില്ല. വീണ്ടും അമർത്തൂ.";
+    }
+}
+
+
+/* =====================================
+   TRANSLATE
+===================================== */
+
+async function translateText() {
+
+    const input =
+        document.getElementById("inputText")
+            .value.trim();
+
+    const output =
+        document.getElementById("outputText");
+
+    const status =
+        document.getElementById("status");
+
+
+    if (!input) {
+
+        status.className =
+            "status error";
+
+        status.innerText =
+            "ആദ്യം മലയാളത്തിൽ സംസാരിക്കൂ.";
+
+        return;
+    }
+
+
+    output.innerText =
+        "Translating...";
+
+    status.className =
+        "status";
+
+    status.innerText =
+        "English-ലേക്ക് മാറ്റുന്നു...";
+
+
+    try {
+
+        const url =
+            "https://api.mymemory.translated.net/get" +
+            "?q=" +
+            encodeURIComponent(input) +
+            "&langpair=ml|en";
+
+
+        const response =
+            await fetch(url);
+
+
+        if (!response.ok) {
+            throw new Error("Network error");
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            data &&
+            data.responseData &&
+            data.responseData.translatedText
+        ) {
+
+            output.innerText =
+                data.responseData.translatedText;
+
+
+            status.className =
+                "status success";
+
+            status.innerText =
+                "✓ Translation complete";
+
+        } else {
+
+            throw new Error("No translation");
+        }
+
+    } catch (error) {
+
+        output.innerText =
+            "Translation ലഭിച്ചില്ല.";
+
+        status.className =
+            "status error";
+
+        status.innerText =
+            "Internet connection പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കൂ.";
+    }
+}
+
+
+/* =====================================
+   COPY
+===================================== */
+
+async function copyResult() {
+
+    const output =
+        document.getElementById("outputText");
+
+    const status =
+        document.getElementById("status");
+
+    const text =
+        output.innerText.trim();
+
+
+    if (
+        !text ||
+        text === "English translation ഇവിടെ കാണും..."
+    ) {
+
+        status.className =
+            "status error";
+
+        status.innerText =
+            "ആദ്യം translation ഉണ്ടാക്കൂ.";
+
+        return;
+    }
+
+
+    try {
+
+        await navigator.clipboard.writeText(text);
+
+        status.className =
+            "status success";
+
+        status.innerText =
+            "✓ Copied";
+
+    } catch (error) {
+
+        // Fallback copy method
+
+        const temp =
+            document.createElement("textarea");
+
+        temp.value = text;
+
+        temp.style.position = "fixed";
+
+        temp.style.left = "-9999px";
+
+        document.body.appendChild(temp);
+
+        temp.focus();
+
+        temp.select();
+
+        document.execCommand("copy");
+
+        document.body.removeChild(temp);
+
+
+        status.className =
+            "status success";
+
+        status.innerText =
+            "✓ Copied";
+    }
+}
+
+</script>
+
+</body>
+</html>
